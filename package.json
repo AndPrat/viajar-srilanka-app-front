@@ -1,5 +1,5 @@
 {
-  "name": "lugares-de-sri-lanka",
+  "name": "viajar-a-sri-lanka",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -14,6 +14,7 @@
     "test:coverage": "vitest run --coverage --passWithNoTests"
   },
   "dependencies": {
+    "@fontsource-variable/inter": "^5.0.8",
     "@reduxjs/toolkit": "^1.9.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
