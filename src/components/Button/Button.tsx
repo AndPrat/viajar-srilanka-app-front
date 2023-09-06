@@ -3,21 +3,18 @@ import "./Button.css";
 interface ButtonProps {
   className: string;
   actionOnClick?: () => void;
-  text: string;
+  children: React.ReactElement | string;
 }
 
 const Button = ({
   className,
   actionOnClick,
-  text,
+  children,
 }: ButtonProps): React.ReactElement => {
   return (
-    <button
-      type="button"
-      className={`button ${className}`}
-      onClick={actionOnClick}
-      dangerouslySetInnerHTML={{ __html: text }}
-    ></button>
+    <button className={className} onClick={actionOnClick}>
+      {children}
+    </button>
   );
 };
 
