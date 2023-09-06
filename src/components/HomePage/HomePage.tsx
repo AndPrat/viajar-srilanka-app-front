@@ -7,9 +7,10 @@ const HomePage = (): React.ReactElement => {
       <h2 className="home__title">Tu viaje a Sri Lanka empieza aquí</h2>
       <Button
         className="button button--primary button--large"
-        text="Acceder"
         actionOnClick={() => {}}
-      />
+      >
+        Acceder
+      </Button>
     </div>
   );
 };
