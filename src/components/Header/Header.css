@@ -3,7 +3,7 @@
   align-items: center;
   flex-direction: row;
   padding: 24px;
-  gap: 108px;
+  justify-content: space-between;
 }
 
 .header__logo {
