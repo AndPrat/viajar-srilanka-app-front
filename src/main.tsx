@@ -1,7 +1,7 @@
 import "@fontsource-variable/inter";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
+import "../src/styles/styles.css";
 import App from "./components/App/App";
 import { BrowserRouter } from "react-router-dom";
 

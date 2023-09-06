@@ -6,25 +6,25 @@
 
 .button--primary {
   border-radius: 10px;
-  background: #ffa500;
-  color: #401d31;
+  background: var(--color-orange);
+  color: var(--color-purple-dark);
   font-weight: 500;
 }
 
 .button--icon {
   border-radius: 35.572px;
-  background: #ffe9e4;
+  background: var(--color-button-icon);
   backdrop-filter: blur(158.29710388183594px);
 }
 
 .button--icon svg {
   width: 24px;
   height: 24px;
-  color: #401d31;
+  color: var(--color-purple-dark);
 }
 
 .button--icon.active svg {
-  fill: #401d31;
+  fill: var(--color-purple-dark);
 }
 
 .button--large {
