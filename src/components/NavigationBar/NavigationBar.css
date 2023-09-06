@@ -9,6 +9,7 @@
 .navigation__list {
   display: flex;
   text-align: center;
+  justify-content: space-between;
 }
 
 .navigation__place {
@@ -16,7 +17,7 @@
   font-weight: 500;
   color: #401d31;
   text-align: center;
-  width: 33.33%;
+  width: 110px;
 }
 
 .navigation__place a {
