@@ -15,7 +15,7 @@
 .navigation__place {
   font-size: 1rem;
   font-weight: 500;
-  color: #401d31;
+  color: var(--color-purple-dark);
   text-align: center;
   width: 110px;
 }
@@ -27,6 +27,6 @@
 }
 
 .navigation__icon {
-  color: #ffa500;
+  color: var(--color-orange);
   margin-bottom: 8px;
 }

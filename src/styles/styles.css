@@ -1,3 +1,10 @@
+:root {
+  --font-primary: "Inter Variable", sans-serif;
+  --color-orange: #ffa500;
+  --color-purple-dark: #401d31;
+  --color-button-icon: #ffe9e4;
+}
+
 *,
 ::before,
 ::after {
@@ -5,7 +12,7 @@
 }
 
 html {
-  font-family: "Inter Variable", sans-serif;
+  font-family: var(--font-primary);
 }
 
 body {
