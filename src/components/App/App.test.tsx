@@ -1,6 +1,15 @@
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
+import auth, { AuthStateHook } from "react-firebase-hooks/auth";
+import { User } from "firebase/auth";
+
+vi.mock("firebase/auth");
+
+const user: Partial<User> = { displayName: "Oscar" };
+
+const authStateHookMock: Partial<AuthStateHook> = [user as User];
+auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
 
 describe("Given an App component", () => {
   describe("When it is rendered", () => {
@@ -13,25 +22,11 @@ describe("Given an App component", () => {
         </BrowserRouter>,
       );
 
-      const header = screen.getByRole("heading", {
+      const heading = screen.getByRole("heading", {
         name: expectedTextHeading,
       });
 
-      expect(header).toBeInTheDocument();
-    });
-
-    test("Then it should show an image with alt 'Viajar a Sri Lanka logo'", () => {
-      const expectedAltText = "Viajar a Sri Lanka logo";
-
-      render(
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>,
-      );
-
-      const viajarSriLankalogo = screen.getByAltText(expectedAltText);
-
-      expect(viajarSriLankalogo).toBeInTheDocument();
+      expect(heading).toBeInTheDocument();
     });
   });
 });

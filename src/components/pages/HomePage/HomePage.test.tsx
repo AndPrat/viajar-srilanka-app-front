@@ -20,8 +20,8 @@ describe("Given a HomePage component", () => {
       expect(heading).toBeInTheDocument();
     });
 
-    test("Then it should show a button with te text 'Acceder'", () => {
-      const expectedButtonText = "Acceder";
+    test("Then it should show a button with the text 'Accede'", () => {
+      const expectedButtonText = "Accede";
 
       render(
         <BrowserRouter>
