@@ -1,4 +1,6 @@
-const paths = {
+import { PathsStructure } from "./types";
+
+const paths: PathsStructure = {
   homePage: "/home",
   places: "/lugares",
 };
