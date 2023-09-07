@@ -26,28 +26,25 @@ const Homepage = (): React.ReactElement => {
       </div>
       <picture>
         <source
-          srcSet="/src/assets/img/background-image-m.webp"
+          srcSet="/img/background-image-m.webp"
           media="(max-width: 768px)"
           type="image/webp"
         />
         <source
-          srcSet="/src/assets/img/background-image-m.jpg"
+          srcSet="/img/background-image-m.jpg"
           media="(max-width: 768px)"
         />
         <source
-          srcSet="/src/assets/img/background-image.webp"
+          srcSet="/img/background-image.webp"
           media="(min-width: 768px)"
           type="image/webp"
         />
-        <source
-          srcSet="/src/assets/img/background-image.jpg"
-          media="(min-width: 768px)"
-        />
+        <source srcSet="/img/background-image.jpg" media="(min-width: 768px)" />
         <img
           className="home-page__background"
-          src="https://images.luxuryescapes.com/q_auto:good,c_fill,g_auto,w_1920,ar_16:9/nt0y4cvcu3ejlkab5gh.jpg"
+          src="/img/background-image.jpg"
           alt="Vistas de Sigiriya en el amanecer"
-          srcSet="https://images.luxuryescapes.com/q_auto:good,c_fill,g_auto,w_1920,ar_16:9/nt0y4cvcu3ejlkab5gh.jpg"
+          srcSet="/img/background-image.jpg"
           width={300}
           height={400}
           loading="eager"
