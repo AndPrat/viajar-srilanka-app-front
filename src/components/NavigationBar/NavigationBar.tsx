@@ -20,20 +20,20 @@ const NavigationBar = (): React.ReactElement => {
       {user && (
         <nav className="navigation">
           <ul className="navigation__list">
-            <li className="navigation__place">
+            <li>
               <NavLink to="/lugares" className="navigation__link">
                 {iconPlaces} Ver lugares
               </NavLink>
             </li>
-            <li className="navigation__place">
+            <li>
               <NavLink to="/nuevo-lugar" className="navigation__link">
                 {iconNewPlace}
                 Nuevo lugar
               </NavLink>
             </li>
-            <li className="navigation__place">
+            <li>
               <NavLink
-                to="/cerrar-sesión"
+                to="/cerrar-sesion"
                 className="navigation__link"
                 onClick={logout}
               >
