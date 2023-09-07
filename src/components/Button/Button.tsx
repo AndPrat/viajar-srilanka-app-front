@@ -1,18 +1,25 @@
+import { ButtonHTMLAttributes, PropsWithChildren } from "react";
 import "./Button.css";
 
-interface ButtonProps {
-  className: string;
+interface ButtonProps
+  extends PropsWithChildren,
+    ButtonHTMLAttributes<HTMLButtonElement> {
+  className?: string;
   actionOnClick?: () => void;
-  children: React.ReactElement | string;
 }
 
 const Button = ({
   className,
   actionOnClick,
   children,
-}: ButtonProps): React.ReactElement => {
+  ...props
+}: Partial<ButtonProps>): React.ReactElement => {
   return (
-    <button className={className} onClick={actionOnClick}>
+    <button
+      className={`button ${className}`}
+      onClick={actionOnClick}
+      {...props}
+    >
       {children}
     </button>
   );

@@ -4,6 +4,7 @@ import { signOut } from "firebase/auth";
 import "./NavigationBar.css";
 import { iconLogout, iconNewPlace, iconPlaces } from "../../utils/icons";
 import { auth } from "../../firebase";
+import Button from "../Button/Button";
 
 const NavigationBar = (): React.ReactElement => {
   const [user] = useAuthState(auth);
@@ -32,14 +33,9 @@ const NavigationBar = (): React.ReactElement => {
               </NavLink>
             </li>
             <li>
-              <NavLink
-                to="/cerrar-sesion"
-                className="navigation__link"
-                onClick={logout}
-              >
-                {iconLogout}
-                Cerrar sesión
-              </NavLink>
+              <Button className="navigation__link" onClick={logout}>
+                {iconLogout} Cerrar sesión
+              </Button>
             </li>
           </ul>
         </nav>
