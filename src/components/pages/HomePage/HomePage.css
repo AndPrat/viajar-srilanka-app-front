@@ -1,4 +1,4 @@
-.home__page {
+.home-page {
   padding: 24px;
   background-image: url("https://images.luxuryescapes.com/q_auto:good,c_fill,g_auto,w_1920,ar_16:9/nt0y4cvcu3ejlkab5gh.webp");
   background-size: cover;
@@ -8,7 +8,14 @@
   min-height: 100vh;
 }
 
-.home__title {
+.home-page__logo-home {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-bottom: 84px;
+}
+
+.home-page__title {
   font-size: 1.5rem;
   font-weight: 700;
   color: #fff;
