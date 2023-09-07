@@ -7,7 +7,7 @@ const Header = (): React.ReactElement => {
 
   return (
     <>
-      {user ? (
+      {user && (
         <header className="header">
           <div className="header__logo">
             <img
@@ -19,7 +19,7 @@ const Header = (): React.ReactElement => {
           </div>
           <h1 className="header__title">Viajar a Sri Lanka</h1>
         </header>
-      ) : null}
+      )}
     </>
   );
 };

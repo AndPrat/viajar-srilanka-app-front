@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
+import { User } from "firebase/auth";
+import auth, { AuthStateHook } from "react-firebase-hooks/auth";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import auth, { AuthStateHook } from "react-firebase-hooks/auth";
-import { User } from "firebase/auth";
 
 vi.mock("firebase/auth");
 
