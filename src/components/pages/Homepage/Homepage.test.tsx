@@ -1,15 +1,15 @@
 import { render, screen } from "@testing-library/react";
-import HomePage from "./HomePage";
+import Homepage from "./Homepage";
 import { BrowserRouter } from "react-router-dom";
 
-describe("Given a HomePage component", () => {
+describe("Given a Homepage component", () => {
   describe("When it is rendered", () => {
     test("Then it should show a heading with the text 'Tu viaje a Sri Lanka empieza aquí'", () => {
       const expectedHeadingText = "Tu viaje a Sri Lanka empieza aquí";
 
       render(
         <BrowserRouter>
-          <HomePage />
+          <Homepage />
         </BrowserRouter>,
       );
 
@@ -25,7 +25,7 @@ describe("Given a HomePage component", () => {
 
       render(
         <BrowserRouter>
-          <HomePage />
+          <Homepage />
         </BrowserRouter>,
       );
 

@@ -1,15 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import Header from "./Header";
 import { BrowserRouter } from "react-router-dom";
-import { User } from "firebase/auth";
-import auth, { AuthStateHook } from "react-firebase-hooks/auth";
-
-vi.mock("firebase/auth");
-
-const user: Partial<User> = { displayName: "Oscar" };
-
-const authStateHookMock: Partial<AuthStateHook> = [user as User];
-auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
 
 describe("Given a Header component", () => {
   describe("When it's rendered with the text 'Viajar a Sri Lanka'", () => {
