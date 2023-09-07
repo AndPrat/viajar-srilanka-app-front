@@ -1,6 +1,6 @@
 import Header from "../Header/Header";
 import NavigationBar from "../NavigationBar/NavigationBar";
-import Homepage from "../pages/Homepage/Homepage";
+import Homepage from "../../pages/Homepage/Homepage";
 
 const App = (): React.ReactElement => {
   return (
