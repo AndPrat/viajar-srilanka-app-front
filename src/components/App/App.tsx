@@ -1,4 +1,5 @@
 import Header from "../Header/Header";
+import HomePage from "../pages/HomePage/HomePage";
 import NavigationBar from "../NavigationBar/NavigationBar";
 
 const App = (): React.ReactElement => {
@@ -6,6 +7,7 @@ const App = (): React.ReactElement => {
     <div className="container">
       <Header />
       <main className="main-content">
+        <HomePage />
         <NavigationBar />
       </main>
     </div>

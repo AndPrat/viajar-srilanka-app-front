@@ -1,30 +1,50 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { signOut } from "firebase/auth";
 import "./NavigationBar.css";
 import { iconLogout, iconNewPlace, iconPlaces } from "../../utils/icons";
+import { auth } from "../../firebase";
 
 const NavigationBar = (): React.ReactElement => {
+  const [user] = useAuthState(auth);
+
+  const navigate = useNavigate();
+
+  const logout = async () => {
+    await signOut(auth);
+    navigate("/home");
+  };
+
   return (
-    <nav className="navigation">
-      <ul className="navigation__list">
-        <li className="navigation__place">
-          <NavLink to="/lugares" className="navigation__link">
-            {iconPlaces} Ver lugares
-          </NavLink>
-        </li>
-        <li className="navigation__place">
-          <NavLink to="/añadir-lugar" className="navigation__link">
-            {iconNewPlace}
-            Añadir lugar
-          </NavLink>
-        </li>
-        <li className="navigation__place">
-          <NavLink to="/cerrar-sesion" className="navigation__link">
-            {iconLogout}
-            Cerrar sesión
-          </NavLink>
-        </li>
-      </ul>
-    </nav>
+    <>
+      {user ? (
+        <nav className="navigation">
+          <ul className="navigation__list">
+            <li className="navigation__place">
+              <NavLink to="/lugares" className="navigation__link">
+                {iconPlaces} Ver lugares
+              </NavLink>
+            </li>
+            <li className="navigation__place">
+              <NavLink to="/nuevo-lugar" className="navigation__link">
+                {iconNewPlace}
+                Nuevo lugar
+              </NavLink>
+            </li>
+            <li className="navigation__place">
+              <NavLink
+                to="/cerrar-sesión"
+                className="navigation__link"
+                onClick={logout}
+              >
+                {iconLogout}
+                Cerrar sesión
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
+      ) : null}
+    </>
   );
 };
 
