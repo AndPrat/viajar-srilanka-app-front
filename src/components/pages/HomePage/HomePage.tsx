@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "./HomePage.css";
 import { signInWithPopup } from "firebase/auth";
-import paths from "../../paths/paths";
+import paths from "../../../routers/paths/paths";
 import { auth, gitHubProvider } from "../../../firebase";
 import Button from "../../Button/Button";
 
