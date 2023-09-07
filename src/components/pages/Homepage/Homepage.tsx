@@ -15,13 +15,44 @@ const Homepage = (): React.ReactElement => {
 
   return (
     <div className="home-page">
-      <h2 className="home-page__title">Tu viaje a Sri Lanka empieza aquí</h2>
-      <Button
-        className="button button--primary button--large"
-        actionOnClick={login}
-      >
-        Accede
-      </Button>
+      <div className="home-page__information">
+        <h2 className="home-page__title">Tu viaje a Sri Lanka empieza aquí</h2>
+        <Button
+          className="button button--primary button--large"
+          actionOnClick={login}
+        >
+          Accede
+        </Button>
+      </div>
+      <picture>
+        <source
+          srcSet="/src/assets/img/background-image-m.webp"
+          media="(max-width: 768px)"
+          type="image/webp"
+        />
+        <source
+          srcSet="/src/assets/img/background-image-m.jpg"
+          media="(max-width: 768px)"
+        />
+        <source
+          srcSet="/src/assets/img/background-image.webp"
+          media="(min-width: 768px)"
+          type="image/webp"
+        />
+        <source
+          srcSet="/src/assets/img/background-image.jpg"
+          media="(min-width: 768px)"
+        />
+        <img
+          className="home-page__background"
+          src="https://images.luxuryescapes.com/q_auto:good,c_fill,g_auto,w_1920,ar_16:9/nt0y4cvcu3ejlkab5gh.jpg"
+          alt="Vistas de Sigiriya en el amanecer"
+          srcSet="https://images.luxuryescapes.com/q_auto:good,c_fill,g_auto,w_1920,ar_16:9/nt0y4cvcu3ejlkab5gh.jpg"
+          width={300}
+          height={400}
+          loading="eager"
+        />
+      </picture>
     </div>
   );
 };
