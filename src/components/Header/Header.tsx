@@ -8,8 +8,8 @@ const Header = (): React.ReactElement => {
           <img
             src="/img/logo-viajarSriLanka.png"
             alt="Viajar a Sri Lanka logo"
-            width="32"
-            height="32"
+            width="48"
+            height="48"
           />
         </div>
         <h1 className="header__title">Viajar a Sri Lanka</h1>

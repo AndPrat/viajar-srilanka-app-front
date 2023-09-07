@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import "./Homepage.css";
 import { signInWithPopup } from "firebase/auth";
-import paths from "../../../routers/paths/paths";
-import { auth, gitHubProvider } from "../../../firebase";
-import Button from "../../Button/Button";
+import paths from "../../routers/paths/paths";
+import { auth, gitHubProvider } from "../../firebase";
+import Button from "../../components/Button/Button";
 
 const Homepage = (): React.ReactElement => {
   const navigate = useNavigate();
