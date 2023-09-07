@@ -17,7 +17,7 @@ const NavigationBar = (): React.ReactElement => {
 
   return (
     <>
-      {user ? (
+      {user && (
         <nav className="navigation">
           <ul className="navigation__list">
             <li className="navigation__place">
@@ -43,7 +43,7 @@ const NavigationBar = (): React.ReactElement => {
             </li>
           </ul>
         </nav>
-      ) : null}
+      )}
     </>
   );
 };
