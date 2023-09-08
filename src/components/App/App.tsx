@@ -3,7 +3,6 @@ import Homepage from "../../pages/Homepage/Homepage";
 import { Navigate, Route, Routes } from "react-router-dom";
 import paths from "../../routers/paths/paths";
 import PlacesListPage from "../../pages/PlacesListPage/PlacesListPage";
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import NavigationBar from "../NavigationBar/NavigationBar";
 
 const App = (): React.ReactElement => {
@@ -16,10 +15,10 @@ const App = (): React.ReactElement => {
           <Route
             path={paths.places}
             element={
-              <ProtectedRoute>
+              <>
                 <PlacesListPage />
                 <NavigationBar />
-              </ProtectedRoute>
+              </>
             }
           />
 
