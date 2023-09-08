@@ -4,6 +4,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import paths from "../../routers/paths/paths";
 import PlacesListPage from "../../pages/PlacesListPage/PlacesListPage";
 import NavigationBar from "../NavigationBar/NavigationBar";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 const App = (): React.ReactElement => {
   return (
@@ -15,10 +16,10 @@ const App = (): React.ReactElement => {
           <Route
             path={paths.places}
             element={
-              <>
+              <ProtectedRoute>
                 <PlacesListPage />
                 <NavigationBar />
-              </>
+              </ProtectedRoute>
             }
           />
 
