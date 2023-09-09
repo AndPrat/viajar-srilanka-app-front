@@ -53,7 +53,6 @@ const Homepage = (): React.ReactElement => {
           srcSet="/img/background-image.jpg"
           width={300}
           height={400}
-          loading="eager"
         />
       </picture>
     </div>

@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
 import "./NavigationBar.css";
-import { iconLogout, iconNewPlace, iconPlaces } from "../../utils/icons";
+import { iconLogout, iconNewPlace, iconPlaces } from "../../icons/icons";
 import { auth } from "../../firebase";
 import Button from "../Button/Button";
 
