@@ -1,0 +1,17 @@
+.places-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px;
+}
+
+.places-list__place {
+  display: flex;
+  justify-content: center;
+  padding: 5%;
+}
+
+.places-list__title {
+  color: var(--color-purple-dark);
+  font-size: 1rem;
+}
