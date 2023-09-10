@@ -53,6 +53,10 @@ input {
 
 .main-content {
   padding: 80px 0 0;
-  height: calc(100vh - 108px);
+  height: 100vh;
   overflow-y: auto;
+}
+
+.main-content.has-nav {
+  height: calc(100vh - 108px);
 }
