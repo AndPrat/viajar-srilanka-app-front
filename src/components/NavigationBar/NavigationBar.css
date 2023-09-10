@@ -24,6 +24,11 @@
   width: 80px;
 }
 
+.navigation__link.active {
+  font-weight: 700;
+  color: var(--color-orange);
+}
+
 .navigation__icon {
   color: var(--color-orange);
   margin-bottom: 8px;
