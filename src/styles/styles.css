@@ -1,8 +1,10 @@
 :root {
   --font-primary: "Inter Variable", sans-serif;
+  --font-secundary: "Poppins", sans-serif;
   --color-orange: #ffa500;
   --color-purple-dark: #401d31;
   --color-button-icon: #ffe9e4;
+  --color-text-grey: rgba(45, 38, 41, 0.5);
 }
 
 *,
@@ -51,4 +53,6 @@ input {
 
 .main-content {
   padding: 80px 0 0;
+  height: calc(100vh - 108px);
+  overflow-y: auto;
 }
