@@ -1,4 +1,5 @@
 import { useAppSelector } from "../../store";
+import PlaceCard from "../PlaceCard/PlaceCard";
 import "./PlacesList.css";
 
 const PlacesList = (): React.ReactElement => {
@@ -9,7 +10,7 @@ const PlacesList = (): React.ReactElement => {
       <ul className="places-list">
         {places.map((place) => (
           <li key={place.id} className="places-list__place">
-            <h3 className="places-list__title">{place.name}</h3>
+            <PlaceCard place={place} />
           </li>
         ))}
       </ul>

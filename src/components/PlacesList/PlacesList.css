@@ -8,7 +8,6 @@
 .places-list__place {
   display: flex;
   justify-content: center;
-  padding: 5%;
 }
 
 .places-list__title {
