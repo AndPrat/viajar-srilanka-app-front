@@ -12,10 +12,21 @@ const PlacesListPage = (): React.ReactElement => {
     dispatch(loadPlacesActionCreator(placesData));
   }, [dispatch]);
 
+  const numberPlaces = placesData.length > 0;
+
   return (
     <>
-      <h1 className="places__title">Lugares de interés</h1>
-      <PlacesList />
+      {numberPlaces ? (
+        <>
+          <h1 className="places__title">Lugares de interés</h1>
+          <PlacesList />
+        </>
+      ) : (
+        <>
+          <h1 className="places__title">Lugares de interés</h1>
+          <p className="places__text">No hay ningún lugar guardado</p>
+        </>
+      )}
     </>
   );
 };
