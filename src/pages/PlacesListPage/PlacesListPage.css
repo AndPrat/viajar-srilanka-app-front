@@ -9,3 +9,11 @@
   padding-top: 50px;
   text-align: center;
 }
+
+.places__text {
+  color: var(--color-purple-dark);
+  font-size: 1.125rem;
+  padding: 50px 72px;
+  text-align: center;
+  font-weight: 500;
+}
