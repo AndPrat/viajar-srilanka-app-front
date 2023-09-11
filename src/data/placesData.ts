@@ -23,7 +23,7 @@ const placesData: Place[] = [
     description:
       "La frondosa selva y los campos de té rodean casi engullendo el Nine Arch Bridge, creando una atmósfera de belleza cuyo cénit es cuando aparece un tren desde la boca del túnel. El puente fue una de las obras de ingeniería y arquitectura más admiradas del periodo colonial británico en la isla de Ceilán.",
     image:
-      "https://www.got2globe.com/wp-content/uploads/2020/02/Composica%CC%83o-Nine-Arches-Bridge-Ella-Sri-Lanka.jpg",
+      "https://estaticos-cdn.prensaiberica.es/clip/53b129d8-dfe1-44d9-a544-da6a8267b028_source-aspect-ratio_default_0.jpg",
   },
 ];
 
