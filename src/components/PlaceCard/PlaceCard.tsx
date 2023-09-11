@@ -22,13 +22,13 @@ const PlaceCard = ({
       </picture>
       <div className="place__information">
         <h2 className="place__name">{name}</h2>
-        <ul className="place__list">
-          <li className="place__location">
+        <div className="place__list">
+          <div className="place__location">
             <i className="place__location-icon">{iconLoaction}</i>
             {location}
-          </li>
+          </div>
           <li className="place__subtitle">{subtitle}</li>
-        </ul>
+        </div>
       </div>
     </article>
   );
