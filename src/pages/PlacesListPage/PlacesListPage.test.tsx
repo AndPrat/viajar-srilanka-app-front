@@ -4,6 +4,7 @@ import { setupStore } from "../../store";
 import { placesMock } from "../../mocks/placeMock";
 import { Provider } from "react-redux";
 import { Auth } from "firebase-admin/auth";
+import React from "react";
 
 describe("Given a PlacesListPage component", () => {
   vi.mock("react", async () => {
@@ -25,7 +26,9 @@ describe("Given a PlacesListPage component", () => {
 
       render(
         <Provider store={store}>
-          <PlacesListPage />
+          <React.Suspense>
+            <PlacesListPage />
+          </React.Suspense>
         </Provider>,
       );
 
