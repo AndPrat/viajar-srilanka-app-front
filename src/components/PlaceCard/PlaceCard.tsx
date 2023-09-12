@@ -11,7 +11,7 @@ const PlaceCard = ({
 }: PlaceCardProps): React.ReactElement => {
   return (
     <article className="place">
-      <picture className="place__picture">
+      <div className="place__picture">
         <img
           src={image}
           alt={`Lugar de Sri Lanka llamado ${name}`}
@@ -19,7 +19,7 @@ const PlaceCard = ({
           height="249"
           className="place__image"
         />
-      </picture>
+      </div>
       <div className="place__information">
         <h2 className="place__name">{name}</h2>
         <div className="place__list">
