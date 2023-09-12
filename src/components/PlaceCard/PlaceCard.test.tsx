@@ -1,23 +1,19 @@
 import { Provider } from "react-redux";
-import { placeMock, placesMock } from "../../mocks/placeMock";
-import { setupStore, store } from "../../store";
+import { placeMock } from "../../mocks/placeMock";
+import { store } from "../../store";
 import PlaceCard from "./PlaceCard";
 import { render, screen } from "@testing-library/react";
+
+const placePosition = 2;
 
 describe("Given a PlaceCard component", () => {
   describe("When it receives a place name 'Sigiriya'", () => {
     test("Then it should show the name 'Sigiriya' inside a heading", () => {
       const expectedHeadingText = "Sigiriya";
 
-      const store = setupStore({
-        placesState: {
-          places: placesMock,
-        },
-      });
-
       render(
         <Provider store={store}>
-          <PlaceCard place={placeMock} />
+          <PlaceCard place={placeMock} placePosition={placePosition} />
         </Provider>,
       );
 
@@ -35,7 +31,7 @@ describe("Given a PlaceCard component", () => {
 
       render(
         <Provider store={store}>
-          <PlaceCard place={placeMock} />
+          <PlaceCard place={placeMock} placePosition={placePosition} />
         </Provider>,
       );
 
@@ -51,7 +47,7 @@ describe("Given a PlaceCard component", () => {
 
       render(
         <Provider store={store}>
-          <PlaceCard place={placeMock} />
+          <PlaceCard place={placeMock} placePosition={placePosition} />
         </Provider>,
       );
 
@@ -67,7 +63,7 @@ describe("Given a PlaceCard component", () => {
 
       render(
         <Provider store={store}>
-          <PlaceCard place={placeMock} />
+          <PlaceCard place={placeMock} placePosition={placePosition} />
         </Provider>,
       );
 
