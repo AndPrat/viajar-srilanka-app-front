@@ -8,9 +8,9 @@ const PlacesList = (): React.ReactElement => {
   return (
     <>
       <ul className="places-list">
-        {places.map((place) => (
+        {places.map((place, placePosition) => (
           <li key={place.id} className="places-list__place">
-            <PlaceCard place={place} />
+            <PlaceCard place={place} placePosition={placePosition} />
           </li>
         ))}
       </ul>
