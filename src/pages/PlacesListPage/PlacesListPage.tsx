@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../store";
 import "./PlacesListPage.css";
 import { loadPlacesActionCreator } from "../../store/places/placesSlice";
@@ -28,9 +28,13 @@ const PlacesListPage = (): React.ReactElement => {
     <>
       <h1 className="places__title">Lugares de interés</h1>
       {places.length > 0 ? (
-        <PlacesList />
+        <Suspense>
+          <PlacesList />
+        </Suspense>
       ) : (
-        <h2 className="places__text">No hay ningún lugar guardado</h2>
+        <Suspense>
+          <h2 className="places__text">No hay ningún lugar guardado</h2>
+        </Suspense>
       )}
     </>
   );

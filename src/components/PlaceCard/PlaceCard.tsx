@@ -4,10 +4,12 @@ import "./PlaceCard.css";
 
 export interface PlaceCardProps {
   place: Place;
+  placePosition: number;
 }
 
 const PlaceCard = ({
   place: { name, subtitle, location, image },
+  placePosition,
 }: PlaceCardProps): React.ReactElement => {
   return (
     <article className="place">
@@ -18,6 +20,7 @@ const PlaceCard = ({
           width="271"
           height="249"
           className="place__image"
+          loading={placePosition < 2 ? "eager" : "lazy"}
         />
       </div>
       <div className="place__information">
