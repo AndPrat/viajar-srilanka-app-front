@@ -8,3 +8,11 @@ export interface Place {
   description: string;
   image: string;
 }
+
+export interface PlacesApi {
+  places: PlaceApi[];
+}
+
+export interface PlaceApi extends Omit<Place, "id"> {
+  _id: string;
+}
