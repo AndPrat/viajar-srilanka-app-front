@@ -29,7 +29,6 @@
   border-radius: 50% 50% 0;
   border: 15px solid var(--color-purple-dark);
   transform: rotate(45deg) translate(0, 0);
-  box-sizing: border-box;
   animation: animMarker 0.4s ease-in-out infinite alternate;
 }
 .loader::before {
