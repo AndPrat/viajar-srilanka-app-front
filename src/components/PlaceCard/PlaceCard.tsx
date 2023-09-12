@@ -27,7 +27,7 @@ const PlaceCard = ({
             <i className="place__location-icon">{iconLoaction}</i>
             {location}
           </div>
-          <li className="place__subtitle">{subtitle}</li>
+          <span className="place__subtitle">{subtitle}</span>
         </div>
       </div>
     </article>
