@@ -3,6 +3,18 @@ import usePlacesApi from "./usePlacesApi";
 import { placesMock } from "../mocks/placeMock";
 import { server } from "../mocks/server";
 import { errorHandlers } from "../mocks/handlers";
+import { User } from "firebase/auth";
+import auth, { AuthStateHook } from "react-firebase-hooks/auth";
+
+beforeEach(() => {
+  vi.clearAllMocks();
+});
+
+const user: Partial<User> = { getIdToken: vi.fn().mockResolvedValue("token") };
+
+const authStateHookMock: Partial<AuthStateHook> = [user as User];
+auth.useIdToken = vi.fn().mockReturnValue([user]);
+auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
 
 describe("Given a function getPlaces", () => {
   describe("When the function is called", () => {
