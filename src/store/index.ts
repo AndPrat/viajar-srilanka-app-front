@@ -5,9 +5,11 @@ import {
 } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { placesReducer } from "./places/placesSlice";
+import { uiReducer } from "./ui/uiSlice";
 
 const rootReducer = combineReducers({
   placesState: placesReducer,
+  uiState: uiReducer,
 });
 
 export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
