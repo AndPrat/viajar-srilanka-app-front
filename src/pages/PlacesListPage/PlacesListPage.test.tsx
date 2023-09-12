@@ -3,9 +3,16 @@ import PlacesListPage from "./PlacesListPage";
 import { setupStore } from "../../store";
 import { placesMock } from "../../mocks/placeMock";
 import { Provider } from "react-redux";
+import { Auth } from "firebase-admin/auth";
 
 describe("Given a PlacesListPage component", () => {
-  vi.mock("react", () => ({ useEffect: vi.fn() }));
+  vi.mock("react", async () => {
+    const actual: Auth = await vi.importActual("react");
+    return {
+      ...actual,
+      useEffect: vi.fn(),
+    };
+  });
 
   describe("When it is rendered", () => {
     test("Then it should shouw a heading with the text 'Lugares de interés'", () => {

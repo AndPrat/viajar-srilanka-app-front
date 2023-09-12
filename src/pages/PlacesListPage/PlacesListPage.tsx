@@ -1,17 +1,28 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../store";
 import "./PlacesListPage.css";
-import placesData from "../../data/placesData";
 import { loadPlacesActionCreator } from "../../store/places/placesSlice";
 import PlacesList from "../../components/PlacesList/PlacesList";
+import usePlacesApi from "../../hooks/usePlacesApi";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../firebase";
 
 const PlacesListPage = (): React.ReactElement => {
   const places = useAppSelector((state) => state.placesState.places);
+  const [user] = useAuthState(auth);
 
   const dispatch = useAppDispatch();
+  const { getPlaces } = usePlacesApi();
+
   useEffect(() => {
-    dispatch(loadPlacesActionCreator(placesData));
-  }, [dispatch]);
+    (async () => {
+      if (user) {
+        const places = await getPlaces();
+
+        dispatch(loadPlacesActionCreator(places));
+      }
+    })();
+  }, [dispatch, getPlaces, user]);
 
   return (
     <>
