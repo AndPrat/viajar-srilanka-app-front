@@ -8,7 +8,7 @@ import auth, { AuthStateHook } from "react-firebase-hooks/auth";
 
 describe("Given a ProtectedRoute component", () => {
   describe("When is rendered and the user isn't logged and try to enter to '/lugares' page", () => {
-    test("Then it should show the '/home' page with the 'Tu viaje a Sri Lanka empieza aquí' heading ", () => {
+    test("Then it should show the '/home' page with the 'Tu viaje a Sri Lanka empieza aquí' heading ", async () => {
       const authStateMock: Partial<AuthStateHook> = [null];
 
       auth.useAuthState = vi.fn().mockReturnValue(authStateMock);
@@ -24,7 +24,7 @@ describe("Given a ProtectedRoute component", () => {
         </MemoryRouter>,
       );
 
-      const heading = screen.getByRole("heading", {
+      const heading = await screen.findByRole("heading", {
         name: expectedHeadingText,
       });
 
