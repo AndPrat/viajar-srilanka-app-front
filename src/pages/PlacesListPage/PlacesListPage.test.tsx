@@ -27,7 +27,9 @@ describe("Given a PlacesListPage component", () => {
       render(
         <Provider store={store}>
           <React.Suspense>
-            <PlacesListPage />
+            <React.Suspense>
+              <PlacesListPage />
+            </React.Suspense>
           </React.Suspense>
         </Provider>,
       );
@@ -41,7 +43,7 @@ describe("Given a PlacesListPage component", () => {
   });
 
   describe("When it is rendered without place card", () => {
-    test("Then nit should show a heading with 'No hay ningún lugar guardado' text", () => {
+    test("Then nit should show a heading with 'No hay ningún lugar guardado' text", async () => {
       const expectHeadingText = "No hay ningún lugar guardado";
 
       const store = setupStore({
@@ -56,7 +58,7 @@ describe("Given a PlacesListPage component", () => {
         </Provider>,
       );
 
-      const headingText = screen.getByRole("heading", {
+      const headingText = await screen.findByRole("heading", {
         name: expectHeadingText,
       });
 
