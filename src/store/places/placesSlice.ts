@@ -17,8 +17,20 @@ const placesSlice = createSlice({
       ...currentPlaceState,
       places: action.payload,
     }),
+    removePlace: (
+      currentPlaceState,
+      action: PayloadAction<string>,
+    ): PlacesState => ({
+      ...currentPlaceState,
+      places: currentPlaceState.places.filter(
+        (place) => place.id !== action.payload,
+      ),
+    }),
   },
 });
 
 export const placesReducer = placesSlice.reducer;
-export const { loadPlaces: loadPlacesActionCreator } = placesSlice.actions;
+export const {
+  loadPlaces: loadPlacesActionCreator,
+  removePlace: removePlaceActionCreator,
+} = placesSlice.actions;
