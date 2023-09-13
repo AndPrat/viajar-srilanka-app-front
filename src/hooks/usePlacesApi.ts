@@ -8,6 +8,7 @@ import {
   hideLoadingActionCreator,
   showLoadingActionCreator,
 } from "../store/ui/uiSlice";
+import showFeedback from "../showFeedback/showFeedback";
 
 const usePlacesApi = () => {
   const dispatch = useAppDispatch();
@@ -29,9 +30,12 @@ const usePlacesApi = () => {
         id: _id,
       }));
       dispatch(hideLoadingActionCreator());
+
       return places;
     } catch {
       dispatch(hideLoadingActionCreator());
+      showFeedback("No se han podido cargar lugares", "error");
+
       throw new Error("Couldn't load places");
     }
   }, [apiUrl, user, dispatch]);
