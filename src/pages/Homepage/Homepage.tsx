@@ -5,6 +5,11 @@ import paths from "../../routers/paths/paths";
 import { auth, gitHubProvider } from "../../firebase";
 import Button from "../../components/Button/Button";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { lazy } from "react";
+
+export const LazyHomepage = lazy(
+  () => import("../../pages/Homepage/Homepage.js"),
+);
 
 const Homepage = (): React.ReactElement => {
   const navigate = useNavigate();
