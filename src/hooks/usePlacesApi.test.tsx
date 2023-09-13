@@ -5,6 +5,9 @@ import { server } from "../mocks/server";
 import { errorHandlers } from "../mocks/handlers";
 import { User } from "firebase/auth";
 import auth, { AuthStateHook } from "react-firebase-hooks/auth";
+import { Provider } from "react-redux";
+import { store } from "../store";
+import { PropsWithChildren } from "react";
 
 beforeEach(() => {
   vi.clearAllMocks();
@@ -19,11 +22,15 @@ auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
 describe("Given a function getPlaces", () => {
   describe("When the function is called", () => {
     test("Then it should receives a list of places", async () => {
+      const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
+        return <Provider store={store}>{children}</Provider>;
+      };
+
       const {
         result: {
           current: { getPlaces },
         },
-      } = renderHook(() => usePlacesApi());
+      } = renderHook(() => usePlacesApi(), { wrapper });
 
       const places = await getPlaces();
 
@@ -32,6 +39,10 @@ describe("Given a function getPlaces", () => {
   });
 
   test("Then it should throw an error 'Couldn't load places' when rejecting", () => {
+    const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
+      return <Provider store={store}>{children}</Provider>;
+    };
+
     server.resetHandlers(...errorHandlers);
 
     const expectedError = new Error("Couldn't load places");
@@ -40,7 +51,7 @@ describe("Given a function getPlaces", () => {
       result: {
         current: { getPlaces },
       },
-    } = renderHook(() => usePlacesApi());
+    } = renderHook(() => usePlacesApi(), { wrapper });
 
     const places = getPlaces();
 

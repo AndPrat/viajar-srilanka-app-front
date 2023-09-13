@@ -6,9 +6,11 @@ import PlacesList from "../../components/PlacesList/PlacesList";
 import usePlacesApi from "../../hooks/usePlacesApi";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
+import Loading from "../../components/Loading/Loading";
 
 const PlacesListPage = (): React.ReactElement => {
   const places = useAppSelector((state) => state.placesState.places);
+  const isLoading = useAppSelector((state) => state.uiState.isLoading);
   const [user] = useAuthState(auth);
 
   const dispatch = useAppDispatch();
@@ -27,6 +29,7 @@ const PlacesListPage = (): React.ReactElement => {
   return (
     <>
       <h1 className="places__title">Lugares de interés</h1>
+      {isLoading && <Loading />}
       {places.length > 0 ? (
         <Suspense>
           <PlacesList />
