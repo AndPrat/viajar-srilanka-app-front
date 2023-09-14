@@ -1,15 +1,14 @@
 import { render, screen } from "@testing-library/react";
-import { User, signInWithPopup, signOut } from "firebase/auth";
-import auth, { AuthStateHook } from "react-firebase-hooks/auth";
-import { BrowserRouter, MemoryRouter } from "react-router-dom";
-import App from "./App";
-import { setupStore } from "../../store";
-import { Provider } from "react-redux";
-import { placesMock } from "../../mocks/placeMock";
-import { beforeEach } from "vitest";
-import { Auth } from "firebase/auth";
-import paths from "../../routers/paths/paths";
 import userEvent from "@testing-library/user-event";
+import { Auth, User, signInWithPopup, signOut } from "firebase/auth";
+import auth, { AuthStateHook } from "react-firebase-hooks/auth";
+import { Provider } from "react-redux";
+import { BrowserRouter, MemoryRouter } from "react-router-dom";
+import { beforeEach } from "vitest";
+import { placesMock } from "../../mocks/placeMock";
+import paths from "../../routers/paths/paths";
+import { setupStore } from "../../store";
+import App from "./App";
 
 beforeEach(() => {
   vi.clearAllMocks();
@@ -108,6 +107,39 @@ describe("Given an App component", () => {
       await userEvent.click(loginButton);
 
       expect(signInWithPopup).toHaveBeenCalled();
+    });
+  });
+
+  describe("When the delete button link with arial label 'delete button' is clicked", () => {
+    test("Then it shouldn't show the name 'Sigiriya' inside a heading", async () => {
+      const expectedArialLabelText = "delete button";
+      const expectedHeadingText = "Sigiriya";
+
+      const user: Partial<User> = { displayName: "Oscar" };
+
+      const authStateMock: Partial<AuthStateHook> = [user as User];
+
+      auth.useAuthState = vi.fn().mockReturnValue(authStateMock);
+
+      render(
+        <MemoryRouter initialEntries={[paths.places]}>
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </MemoryRouter>,
+      );
+
+      const placeHeading = await screen.findByRole("heading", {
+        name: expectedHeadingText,
+      });
+
+      const deleteButton = await screen.findAllByLabelText(
+        expectedArialLabelText,
+      );
+
+      await userEvent.click(deleteButton[0]);
+
+      expect(placeHeading).not.toBeInTheDocument();
     });
   });
 });
