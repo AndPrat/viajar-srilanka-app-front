@@ -10,6 +10,7 @@ import NavigationBar from "../NavigationBar/NavigationBar";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { auth } from "../../firebase";
 import "react-toastify/dist/ReactToastify.css";
+import NewPlacePage from "../../pages/NewPlacePage/NewPlacePage";
 
 const App = (): React.ReactElement => {
   const [user] = useAuthState(auth);
@@ -39,6 +40,17 @@ const App = (): React.ReactElement => {
               </ProtectedRoute>
             }
           />
+          <Route
+            path={paths.newPlace}
+            element={
+              <ProtectedRoute>
+                <Suspense>
+                  <NewPlacePage />
+                </Suspense>
+                <NavigationBar />
+              </ProtectedRoute>
+            }
+          ></Route>
 
           <Route path="/" element={<Navigate to={paths.places} />} />
         </Routes>
