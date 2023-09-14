@@ -10,7 +10,7 @@ export const handlers = [
     (_req, res, ctx) => {
       return res(
         ctx.status(200),
-        ctx.json({ message: "The place has been successfully removed" }),
+        ctx.json({ message: "El lugar se ha borrado con éxito" }),
       );
     },
   ),
@@ -23,7 +23,7 @@ export const errorHandlers = [
   rest.delete(
     `${import.meta.env.VITE_API_URL}/places/${wrongPlaceIdMock}`,
     (_res, res, ctx) => {
-      return res(ctx.status(404, "Can't remove the place"));
+      return res(ctx.status(404, "No se ha podido borrar el lugar"));
     },
   ),
 ];
