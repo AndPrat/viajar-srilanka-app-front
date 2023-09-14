@@ -23,7 +23,7 @@ const usePlacesApi = () => {
 
     try {
       const { data: apiPlaces } = await axios.get<{ places: PlaceApi[] }>(
-        `${apiUrl}/lugares`,
+        `${apiUrl}/places`,
         { headers: { Authorization: `Bearer ${token}` } },
       );
 
@@ -47,7 +47,7 @@ const usePlacesApi = () => {
     try {
       const {
         data: { message },
-      } = await axios.delete(`${apiUrl}/lugares/${_id}`, {
+      } = await axios.delete(`${apiUrl}/places/${_id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

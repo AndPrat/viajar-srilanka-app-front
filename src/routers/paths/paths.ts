@@ -2,7 +2,7 @@ import { PathsStructure } from "./types";
 
 const paths: PathsStructure = {
   homePage: "/home",
-  places: "/lugares",
+  places: "/places",
 };
 
 export default paths;

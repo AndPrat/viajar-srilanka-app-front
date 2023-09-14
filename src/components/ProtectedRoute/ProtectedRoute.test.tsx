@@ -7,7 +7,7 @@ import { store } from "../../store";
 import auth, { AuthStateHook } from "react-firebase-hooks/auth";
 
 describe("Given a ProtectedRoute component", () => {
-  describe("When is rendered and the user isn't logged and try to enter to '/lugares' page", () => {
+  describe("When is rendered and the user isn't logged and try to enter to '/places' page", () => {
     test("Then it should show the '/home' page with the 'Tu viaje a Sri Lanka empieza aquí' heading ", async () => {
       const authStateMock: Partial<AuthStateHook> = [null];
 

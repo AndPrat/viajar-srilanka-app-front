@@ -22,12 +22,12 @@ const NavigationBar = (): React.ReactElement => {
         <nav className="navigation">
           <ul className="navigation__list">
             <li>
-              <NavLink to="/lugares" className="navigation__link">
+              <NavLink to="/places" className="navigation__link">
                 {iconPlaces} Ver lugares
               </NavLink>
             </li>
             <li>
-              <NavLink to="/nuevo-lugar" className="navigation__link">
+              <NavLink to="/new-place" className="navigation__link">
                 {iconNewPlace}
                 Nuevo lugar
               </NavLink>
