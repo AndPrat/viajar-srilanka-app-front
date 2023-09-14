@@ -6,7 +6,7 @@ const Header = (): React.ReactElement => {
       <header className="header">
         <div className="header__logo">
           <img
-            src="/img/logo-viajarSriLanka.png"
+            src="/img/logo-viajarSriLanka.svg"
             alt="Viajar a Sri Lanka logo"
             width="48"
             height="48"
