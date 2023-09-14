@@ -11,6 +11,7 @@ interface ButtonProps
 const Button = ({
   className,
   actionOnClick,
+  disabled,
   children,
   ...props
 }: Partial<ButtonProps>): React.ReactElement => {
@@ -18,6 +19,7 @@ const Button = ({
     <button
       className={`button ${className}`}
       onClick={actionOnClick}
+      disabled={disabled}
       {...props}
     >
       {children}

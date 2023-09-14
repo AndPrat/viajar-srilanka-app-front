@@ -1,3 +1,4 @@
+import Button from "../Button/Button";
 import "./NewPlaceForm.css";
 
 const NewPlaceForm = (): React.ReactElement => {
@@ -50,9 +51,12 @@ const NewPlaceForm = (): React.ReactElement => {
         <input type="url" id="placeImage" className="place-form__input" />
       </div>
       <div className="place-form__group">
-        <button className="button button--primary button--large">
+        <Button
+          className="button button--primary button--large"
+          disabled={true}
+        >
           Añadir un lugar
-        </button>
+        </Button>
       </div>
     </form>
   );
