@@ -51,11 +51,13 @@ const usePlacesApi = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
 
+      showFeedback(message, "success");
+
       return message;
     } catch {
       showFeedback("No se ha podido borrar el lugar", "error");
 
-      throw new Error("Can't remove the place");
+      throw new Error("No se ha podido borrar el lugar");
     }
   };
 

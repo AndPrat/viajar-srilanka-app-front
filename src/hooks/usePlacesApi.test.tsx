@@ -61,7 +61,7 @@ describe("Given a function getPlaces", () => {
 
 describe("Given a function deletePlace", () => {
   describe("When the function is called", () => {
-    test("Then it should receives a place id", async () => {
+    test("Then it should receive a place id", async () => {
       const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
         return <Provider store={store}>{children}</Provider>;
       };
@@ -72,21 +72,21 @@ describe("Given a function deletePlace", () => {
         },
       } = renderHook(() => usePlacesApi(), { wrapper });
 
-      const expectedMessage = "The place has been successfully removed";
+      const expectedMessage = "El lugar se ha borrado con éxito";
 
       const place = await deletePlace(idPlaceMock.id);
 
       expect(place).toStrictEqual(expectedMessage);
     });
 
-    test("Then it should throw an error 'Can't remove the place' when rejecting", () => {
+    test("Then it should throw an error 'No se ha podido borrar el lugar' when rejecting", () => {
       const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
         return <Provider store={store}>{children}</Provider>;
       };
 
       server.resetHandlers(...errorHandlers);
 
-      const expectedError = new Error("Can't remove the place");
+      const expectedError = new Error("No se ha podido borrar el lugar");
 
       const {
         result: {
