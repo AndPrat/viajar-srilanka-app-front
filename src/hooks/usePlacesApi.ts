@@ -10,6 +10,8 @@ import {
 } from "../store/ui/uiSlice";
 import showFeedback from "../showFeedback/showFeedback";
 
+export const apiUrl = import.meta.env.VITE_API_URL;
+
 const usePlacesApi = () => {
   const dispatch = useAppDispatch();
   const apiUrl = import.meta.env.VITE_API_URL;
@@ -40,8 +42,26 @@ const usePlacesApi = () => {
     }
   }, [apiUrl, user, dispatch]);
 
+  const deletePlace = async (_id: string) => {
+    const token = await user?.getIdToken();
+    try {
+      const {
+        data: { message },
+      } = await axios.delete(`${apiUrl}/lugares/${_id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      return message;
+    } catch {
+      showFeedback("No se ha podido borrar el lugar", "error");
+
+      throw new Error("Can't remove the place");
+    }
+  };
+
   return {
-    getPlaces: getPlaces,
+    getPlaces,
+    deletePlace,
   };
 };
 
