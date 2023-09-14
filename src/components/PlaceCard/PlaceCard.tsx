@@ -1,3 +1,4 @@
+import usePlacesApi from "../../hooks/usePlacesApi";
 import { iconDelete, iconLoaction } from "../../icons/icons";
 import { useAppDispatch } from "../../store";
 import { removePlaceActionCreator } from "../../store/places/placesSlice";
@@ -15,8 +16,10 @@ const PlaceCard = ({
   placePosition,
 }: PlaceCardProps): React.ReactElement => {
   const dispatch = useAppDispatch();
+  const { deletePlace } = usePlacesApi();
 
-  const deletePlace = (id: string) => {
+  const removePlace = (id: string) => {
+    deletePlace(id);
     dispatch(removePlaceActionCreator(id));
   };
 
@@ -25,7 +28,7 @@ const PlaceCard = ({
       <div className="place__picture">
         <Button
           className="button button--icon button--medium button--delete"
-          actionOnClick={() => deletePlace(id)}
+          actionOnClick={() => removePlace(id)}
           aria-label="delete button"
         >
           {iconDelete}
