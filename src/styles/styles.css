@@ -5,7 +5,9 @@
   --color-purple-dark: #401d31;
   --color-button-icon: #ffe9e4;
   --color-text-grey: rgba(39, 27, 32, 0.71);
-  --color-orange-background: rgba(255, 165, 0, 0.9);
+  --color-orange-background: rgba(255, 138, 0, 0.9);
+  --color-success-toast: #9dc87c;
+  --color-error-toast: #a55357;
 }
 
 *,
@@ -45,11 +47,16 @@ button {
 }
 
 button,
-input {
+input,
+textarea {
   font: inherit;
   background-color: transparent;
   border: none;
   margin: 0;
+}
+
+textarea {
+  resize: none;
 }
 
 .main-content {
