@@ -55,7 +55,3 @@ input {
 .main-content {
   padding-top: 80px;
 }
-
-.main-content.has-av {
-  height: calc(100vh - 120px);
-}
