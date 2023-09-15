@@ -1,0 +1,16 @@
+.Toastify__toast {
+  position: "top-center";
+  margin: 0 auto;
+  text-align: center;
+  padding: 10px;
+  color: var(--color-text-grey);
+  background-color: #fff;
+}
+
+.Toastify__progress-bar--success {
+  background-color: #9dc87c;
+}
+
+.Toastify__progress-bar--error {
+  background-color: #a55357;
+}
