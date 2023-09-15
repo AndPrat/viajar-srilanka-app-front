@@ -8,9 +8,9 @@
 }
 
 .Toastify__progress-bar--success {
-  background-color: #9dc87c;
+  background-color: var(--color-success-toast);
 }
 
 .Toastify__progress-bar--error {
-  background-color: #a55357;
+  background-color: var(--color-error-toast);
 }
