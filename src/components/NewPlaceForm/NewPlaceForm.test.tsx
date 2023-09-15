@@ -44,8 +44,8 @@ describe("Given a NewPlaceForm component", () => {
     expect(button).toBeInTheDocument();
   });
 
-  describe("When it is rendered", () => {
-    test("", async () => {
+  describe("When it is rendered and the user types in every input", () => {
+    test("Then it should show a full form", async () => {
       render(<NewPlaceForm />);
 
       const expectedInputName = placeMock.name;

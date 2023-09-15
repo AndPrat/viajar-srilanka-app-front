@@ -26,6 +26,13 @@ const placesSlice = createSlice({
         (place) => place.id !== action.payload,
       ),
     }),
+    addPlace: (
+      currentPlaceState,
+      action: PayloadAction<Place>,
+    ): PlacesState => ({
+      ...currentPlaceState,
+      places: [...currentPlaceState.places, action.payload],
+    }),
   },
 });
 
@@ -33,4 +40,5 @@ export const placesReducer = placesSlice.reducer;
 export const {
   loadPlaces: loadPlacesActionCreator,
   removePlace: removePlaceActionCreator,
+  addPlace: addPlaceActionCreator,
 } = placesSlice.actions;
