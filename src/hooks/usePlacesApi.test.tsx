@@ -138,7 +138,7 @@ describe("Given a function addPlace", () => {
         return <Provider store={store}>{children}</Provider>;
       };
 
-      const expectedNewPlace = addPlaceMock;
+      const expectedNewPlace = idPlaceMock;
 
       const {
         result: {
@@ -148,7 +148,7 @@ describe("Given a function addPlace", () => {
 
       const newPlace = await addPlace(expectedNewPlace);
 
-      expect(newPlace).toStrictEqual({ place: expectedNewPlace });
+      expect(newPlace).toStrictEqual(expectedNewPlace);
     });
 
     describe("When the function is called and the place couldn't create", () => {
