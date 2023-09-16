@@ -1,25 +1,37 @@
 import { renderHook } from "@testing-library/react";
-import usePlacesApi from "./usePlacesApi";
-import { idPlaceMock, placesMock, wrongPlaceIdMock } from "../mocks/placeMock";
-import { server } from "../mocks/server";
-import { errorHandlers } from "../mocks/handlers";
 import { User } from "firebase/auth";
-import auth, { AuthStateHook } from "react-firebase-hooks/auth";
-import { Provider } from "react-redux";
-import { store } from "../store";
 import { PropsWithChildren } from "react";
+import {
+  AuthStateHook,
+  IdTokenHook,
+  default as auth,
+  default as authHook,
+} from "react-firebase-hooks/auth";
+import { Provider } from "react-redux";
+import { errorHandlers } from "../mocks/handlers";
+import {
+  addPlaceMock,
+  idPlaceMock,
+  placesMock,
+  wrongPlaceIdMock,
+} from "../mocks/placeMock";
+import { server } from "../mocks/server";
+import { store } from "../store";
+import usePlacesApi from "./usePlacesApi";
 
 beforeEach(() => {
   vi.clearAllMocks();
 });
 
-const user: Partial<User> = { getIdToken: vi.fn().mockResolvedValue("token") };
-
-const authStateHookMock: Partial<AuthStateHook> = [user as User];
-auth.useIdToken = vi.fn().mockReturnValue([user]);
-auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
-
 describe("Given a function getPlaces", () => {
+  const user: Partial<User> = {
+    getIdToken: vi.fn().mockResolvedValue("token"),
+  };
+
+  const authStateHookMock: Partial<AuthStateHook> = [user as User];
+  auth.useIdToken = vi.fn().mockReturnValue([user]);
+  auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+
   describe("When the function is called", () => {
     test("Then it should receives a list of places", async () => {
       const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
@@ -60,6 +72,14 @@ describe("Given a function getPlaces", () => {
 });
 
 describe("Given a function deletePlace", () => {
+  const user: Partial<User> = {
+    getIdToken: vi.fn().mockResolvedValue("token"),
+  };
+
+  const authStateHookMock: Partial<AuthStateHook> = [user as User];
+  auth.useIdToken = vi.fn().mockReturnValue([user]);
+  auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+
   describe("When the function is called", () => {
     test("Then it should receive a place id", async () => {
       const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
@@ -97,6 +117,63 @@ describe("Given a function deletePlace", () => {
       const placesPromise = deletePlace(wrongPlaceIdMock);
 
       expect(placesPromise).rejects.toThrowError(expectedError);
+    });
+  });
+});
+
+describe("Given a function addPlace", () => {
+  const user: Partial<User> = {
+    getIdToken: vi.fn().mockResolvedValue(null),
+  };
+
+  const idTokenHook: Partial<IdTokenHook> = [user as User];
+  const authStateHookMock: Partial<AuthStateHook> = [user as User];
+
+  authHook.useIdToken = vi.fn().mockReturnValue(idTokenHook);
+  authHook.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+
+  describe("When the function is called", () => {
+    test("Then it should receive a place id", async () => {
+      const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
+        return <Provider store={store}>{children}</Provider>;
+      };
+
+      const expectedNewPlace = addPlaceMock;
+
+      const {
+        result: {
+          current: { addPlace },
+        },
+      } = renderHook(() => usePlacesApi(), { wrapper });
+
+      const newPlace = await addPlace(expectedNewPlace);
+
+      expect(newPlace).toStrictEqual({ place: expectedNewPlace });
+    });
+
+    describe("When the function is called and the place couldn't create", () => {
+      test("Then it should the error message 'No se ha podido añadir el lugar'", () => {
+        const wrapper = ({
+          children,
+        }: PropsWithChildren): React.ReactElement => {
+          return <Provider store={store}>{children}</Provider>;
+        };
+
+        server.resetHandlers(...errorHandlers);
+
+        const expectedError = new Error("No se ha podido añadir el lugar");
+        const place = addPlaceMock;
+
+        const {
+          result: {
+            current: { addPlace },
+          },
+        } = renderHook(() => usePlacesApi(), { wrapper });
+
+        const newPlace = addPlace(place);
+
+        expect(newPlace).rejects.toThrowError(expectedError);
+      });
     });
   });
 });
