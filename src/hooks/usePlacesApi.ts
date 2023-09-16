@@ -62,6 +62,8 @@ const usePlacesApi = () => {
   };
 
   const addPlace = async (newPlace: Omit<Place, "id">) => {
+    dispatch(showLoadingActionCreator());
+
     try {
       const token = await user?.getIdToken();
       const { data: apiPlaces } = await axios.post(
@@ -78,8 +80,15 @@ const usePlacesApi = () => {
       };
       delete place._id;
 
+      dispatch(hideLoadingActionCreator());
+      showFeedback("El lugar se ha añadido con éxito", "success");
+
       return place;
     } catch {
+      dispatch(hideLoadingActionCreator());
+
+      showFeedback("No se ha podido añadir el lugar", "error");
+
       throw new Error("No se ha podido añadir el lugar");
     }
   };
