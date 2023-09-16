@@ -2,13 +2,13 @@ import axios from "axios";
 import { useCallback } from "react";
 import { useIdToken } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
-import { Place, PlaceApi } from "../types";
+import showFeedback from "../showFeedback/showFeedback";
 import { useAppDispatch } from "../store";
 import {
   hideLoadingActionCreator,
   showLoadingActionCreator,
 } from "../store/ui/uiSlice";
-import showFeedback from "../showFeedback/showFeedback";
+import { Place, PlaceApi } from "../types";
 
 export const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -62,14 +62,23 @@ const usePlacesApi = () => {
   };
 
   const addPlace = async (newPlace: Omit<Place, "id">) => {
-    const token = await user?.getIdToken();
     try {
-      const { data: apiPlaces } = await axios.post(`${apiUrl}/places`, {
-        headers: { Authorization: `Bearer ${token}` },
+      const token = await user?.getIdToken();
+      const { data: apiPlaces } = await axios.post(
+        `${apiUrl}/places`,
         newPlace,
-      });
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
 
-      return apiPlaces;
+      const place = {
+        ...apiPlaces.place,
+        id: apiPlaces.place._id,
+      };
+      delete place._id;
+
+      return place;
     } catch {
       throw new Error("No se ha podido añadir el lugar");
     }

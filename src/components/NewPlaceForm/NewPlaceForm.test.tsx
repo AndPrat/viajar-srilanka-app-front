@@ -12,9 +12,11 @@ describe("Given a NewPlaceForm component", () => {
   const expectedShortDescription = "Breve descripción";
   const expectedPlaceImage = "Imagen del lugar";
 
+  const mockSubmit = vi.fn();
+
   describe("When it is rendered", () => {
     test("Then it should show an 'Lugar de Sri Lanka', 'Subtítulo', 'Localización', 'Horario', 'Otro lugar relacionado', 'Breve descripción' and 'Imagen del lugar' fields texts", () => {
-      render(<NewPlaceForm />);
+      render(<NewPlaceForm actionOnSubmit={mockSubmit} />);
 
       const namePlace = screen.getByLabelText(expectedNamePlace);
       const subtitleName = screen.getByLabelText(expectedSubtitleName);
@@ -37,7 +39,7 @@ describe("Given a NewPlaceForm component", () => {
   test("Then it should show a button with 'Añadir un lugar' text", () => {
     const expectedButtonText = "Añadir un lugar";
 
-    render(<NewPlaceForm />);
+    render(<NewPlaceForm actionOnSubmit={mockSubmit} />);
 
     const button = screen.getByRole("button", { name: expectedButtonText });
 
@@ -46,7 +48,7 @@ describe("Given a NewPlaceForm component", () => {
 
   describe("When it is rendered and the user types in every input", () => {
     test("Then it should show a full form", async () => {
-      render(<NewPlaceForm />);
+      render(<NewPlaceForm actionOnSubmit={mockSubmit} />);
 
       const expectedInputName = placeMock.name;
       const expectedInputSubtitle = placeMock.subtitle;

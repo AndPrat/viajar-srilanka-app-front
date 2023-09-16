@@ -1,6 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import NewPlacePage from "./NewPlacePage";
+import { Provider } from "react-redux";
+import { store } from "../../store";
 
 describe("Given a NewPlacePage component ", () => {
   describe("When it is rendered", () => {
@@ -9,7 +11,9 @@ describe("Given a NewPlacePage component ", () => {
 
       render(
         <BrowserRouter>
-          <NewPlacePage />
+          <Provider store={store}>
+            <NewPlacePage />
+          </Provider>
         </BrowserRouter>,
       );
 

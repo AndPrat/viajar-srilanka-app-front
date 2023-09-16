@@ -1,10 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Place } from "../../types";
 import Button from "../Button/Button";
 import "./NewPlaceForm.css";
 
-const NewPlace = () => {
-  const [newPlace, setNewPlace] = useState<Partial<Place>>({
+interface NewPlaceProps {
+  actionOnSubmit: (places: Omit<Place, "id">) => void;
+}
+
+const NewPlace = ({ actionOnSubmit }: NewPlaceProps): React.ReactElement => {
+  const [canSubmit, setCanSubmit] = useState(false);
+
+  const initialPlaceData: Omit<Place, "id"> = {
     name: "",
     subtitle: "",
     otherRelatedPlace: "",
@@ -12,7 +18,9 @@ const NewPlace = () => {
     image: "",
     schedule: "",
     description: "",
-  });
+  };
+
+  const [newPlace, setNewPlace] = useState<Omit<Place, "id">>(initialPlaceData);
 
   const NewPlaceForm = (
     event:
@@ -25,8 +33,22 @@ const NewPlace = () => {
     }));
   };
 
+  const submitForm = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    actionOnSubmit(newPlace);
+  };
+
+  useEffect(() => {
+    setCanSubmit(
+      Object.values(newPlace).every((value) => {
+        return Boolean(value);
+      }),
+    );
+  }, [newPlace]);
+
   return (
-    <form className="place-form">
+    <form className="place-form" onSubmit={submitForm}>
       <div className="place-form__group">
         <label htmlFor="name" className="place-form__label">
           Lugar de Sri Lanka
@@ -111,7 +133,10 @@ const NewPlace = () => {
         />
       </div>
       <div className="place-form__group">
-        <Button className="button button--primary button--large">
+        <Button
+          className="button button--primary button--large"
+          disabled={!canSubmit}
+        >
           Añadir un lugar
         </Button>
       </div>
