@@ -84,3 +84,15 @@ export const idPlaceMock: Place = {
   image:
     "https://www.storiesbysoumya.com/wp-content/uploads/2021/11/sigiriya-rock-fortress-768x432.jpg",
 };
+
+export const addPlaceMock: Omit<Place, "id"> = {
+  name: "Sigiriya",
+  subtitle: "Templo de la roca del león",
+  location: "Matale",
+  schedule: "8h a 17h",
+  otherRelatedPlace: "Mirador Pidurangala",
+  description:
+    "La inmensa e imponente Roca del León o Lion Rock de Sigiriya, nacida de una erupción volcánica, emerge como un titán en el paisaje de la ciudad, que ineludiblemente ha ligado su historia a ella.",
+  image:
+    "https://www.storiesbysoumya.com/wp-content/uploads/2021/11/sigiriya-rock-fortress-768x432.jpg",
+};
