@@ -1,4 +1,3 @@
-import { lazy } from "react";
 import NewPlaceForm from "../../components/NewPlaceForm/NewPlaceForm.js";
 import usePlacesApi from "../../hooks/usePlacesApi.js";
 import { useAppDispatch } from "../../store/index.js";
@@ -7,10 +6,6 @@ import { Place } from "../../types.js";
 import "./NewPlacePage.css";
 import { useNavigate } from "react-router-dom";
 import paths from "../../routers/paths/paths.js";
-
-export const LazyNewPlacePage = lazy(
-  () => import("../../pages/NewPlacePage/NewPlacePage.js"),
-);
 
 const NewPlacePage = (): React.ReactElement => {
   const { addPlace } = usePlacesApi();

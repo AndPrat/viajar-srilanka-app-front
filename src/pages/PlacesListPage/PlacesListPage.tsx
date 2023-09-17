@@ -1,16 +1,12 @@
-import { lazy, useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../store";
-import "./PlacesListPage.css";
-import { loadPlacesActionCreator } from "../../store/places/placesSlice";
-import PlacesList from "../../components/PlacesList/PlacesList";
-import usePlacesApi from "../../hooks/usePlacesApi";
+import { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../../firebase";
 import Loading from "../../components/Loading/Loading";
-
-export const LazyPlaceLisPage = lazy(
-  () => import("../../pages/PlacesListPage/PlacesListPage.js"),
-);
+import PlacesList from "../../components/PlacesList/PlacesList";
+import { auth } from "../../firebase";
+import usePlacesApi from "../../hooks/usePlacesApi";
+import { useAppDispatch, useAppSelector } from "../../store";
+import { loadPlacesActionCreator } from "../../store/places/placesSlice";
+import "./PlacesListPage.css";
 
 const PlacesListPage = (): React.ReactElement => {
   const places = useAppSelector((state) => state.placesState.places);
