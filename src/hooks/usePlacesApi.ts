@@ -93,22 +93,25 @@ const usePlacesApi = () => {
     }
   };
 
-  const getPlaceById = async (id: string) => {
-    const token = await user?.getIdToken();
+  const getPlaceById = useCallback(
+    async (id: string) => {
+      const token = await user?.getIdToken();
 
-    try {
-      const { data: apiPlace } = await axios.get(`${apiUrl}/places/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      try {
+        const { data: apiPlace } = await axios.get(`${apiUrl}/places/${id}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
 
-      const place = { ...apiPlace.place, id: apiPlace.place._id };
-      delete place._id;
+        const place = { ...apiPlace.place, id: apiPlace.place._id };
+        delete place._id;
 
-      return place;
-    } catch {
-      throw new Error("No se ha podido obtener el lugar");
-    }
-  };
+        return place;
+      } catch {
+        throw new Error("No se ha podido obtener el lugar");
+      }
+    },
+    [user, apiUrl],
+  );
 
   return {
     getPlaces,
