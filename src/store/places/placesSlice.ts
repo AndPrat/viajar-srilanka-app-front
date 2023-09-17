@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { PlacesState } from "./types";
 import { Place } from "../../types";
+import { PlacesState } from "./types";
 
 const initialPlacesState: PlacesState = {
   places: [],
