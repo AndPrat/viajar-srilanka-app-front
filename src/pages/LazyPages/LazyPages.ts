@@ -11,3 +11,7 @@ export const LazyPlaceLisPage = lazy(
 export const LazyHomepage = lazy(
   () => import("../../pages/Homepage/Homepage.js"),
 );
+
+export const LazyPlaceDetailPage = lazy(
+  () => import("../../pages/PlaceDetailPage/PlaceDetailPage.js"),
+);
