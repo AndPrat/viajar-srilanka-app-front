@@ -10,7 +10,7 @@ const PlacesList = (): React.ReactElement => {
       <ul className="places-list">
         {places.map((place, placePosition) => (
           <li key={place.id} className="places-list__place">
-            <PlaceCard place={place} placePosition={placePosition} />
+            <PlaceCard place={place} isLazy={placePosition > 1} />
           </li>
         ))}
       </ul>
