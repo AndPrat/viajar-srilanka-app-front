@@ -12,6 +12,9 @@ import { errorHandlers } from "../mocks/handlers";
 import {
   addPlaceMock,
   idPlaceMock,
+  placeByIdMock,
+  placeIdMock,
+  placeMock,
   placesMock,
   wrongPlaceIdMock,
 } from "../mocks/placeMock";
@@ -152,7 +155,7 @@ describe("Given a function addPlace", () => {
     });
 
     describe("When the function is called and the place couldn't create", () => {
-      test("Then it should the error message 'No se ha podido añadir el lugar'", () => {
+      test("Then it should the error message 'No se ha podido añadir el lugar' when rejecting", () => {
         const wrapper = ({
           children,
         }: PropsWithChildren): React.ReactElement => {
@@ -173,6 +176,61 @@ describe("Given a function addPlace", () => {
         const newPlace = addPlace(place);
 
         expect(newPlace).rejects.toThrowError(expectedError);
+      });
+    });
+  });
+});
+
+describe("Given a function getPlaceById", () => {
+  const user: Partial<User> = {
+    getIdToken: vi.fn().mockResolvedValue("token"),
+  };
+
+  const authStateHookMock: Partial<AuthStateHook> = [user as User];
+  auth.useIdToken = vi.fn().mockReturnValue([user]);
+  auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+
+  describe("When the function is called", () => {
+    test("Then it should receives a 'Sigiriya' place", async () => {
+      const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
+        return <Provider store={store}>{children}</Provider>;
+      };
+
+      const {
+        result: {
+          current: { getPlaceById },
+        },
+      } = renderHook(() => usePlacesApi(), { wrapper });
+
+      const expectedPlace = placeMock;
+
+      const place = await getPlaceById(placeIdMock);
+
+      expect(place).toStrictEqual(expectedPlace);
+    });
+
+    describe("When the function is called and the place couldn't load", () => {
+      test("hen it should the error message 'No se ha podido obtener el lugar' when rejecting", () => {
+        const wrapper = ({
+          children,
+        }: PropsWithChildren): React.ReactElement => {
+          return <Provider store={store}>{children}</Provider>;
+        };
+
+        server.resetHandlers(...errorHandlers);
+
+        const expectedError = new Error("No se ha podido obtener el lugar");
+        const place = placeByIdMock;
+
+        const {
+          result: {
+            current: { getPlaceById },
+          },
+        } = renderHook(() => usePlacesApi(), { wrapper });
+
+        const placeById = getPlaceById(place._id);
+
+        expect(placeById).rejects.toThrowError(expectedError);
       });
     });
   });
