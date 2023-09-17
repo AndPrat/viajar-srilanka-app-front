@@ -33,6 +33,13 @@ const placesSlice = createSlice({
       ...currentPlaceState,
       places: [...currentPlaceState.places, action.payload],
     }),
+    loadSelectedPlace: (
+      currentPlaceState: PlacesState,
+      action: PayloadAction<Place>,
+    ): PlacesState => ({
+      ...currentPlaceState,
+      selectedPlace: action.payload,
+    }),
   },
 });
 
@@ -41,4 +48,5 @@ export const {
   loadPlaces: loadPlacesActionCreator,
   removePlace: removePlaceActionCreator,
   addPlace: addPlaceActionCreator,
+  loadSelectedPlace: loadSelectedPlaceActionCreator,
 } = placesSlice.actions;
