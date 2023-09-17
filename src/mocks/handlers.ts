@@ -2,6 +2,7 @@ import { rest } from "msw";
 import {
   addPlaceMock,
   apiPlacesMock,
+  placeByIdMock,
   placeIdMock,
   wrongPlaceIdMock,
 } from "./placeMock";
@@ -24,6 +25,13 @@ export const handlers = [
   rest.post(`${import.meta.env.VITE_API_URL}/places`, (_req, res, ctx) => {
     return res(ctx.status(201), ctx.json({ place: addPlaceMock }));
   }),
+
+  rest.get(
+    `${import.meta.env.VITE_API_URL}/places/${placeIdMock}`,
+    (_req, res, ctx) => {
+      return res(ctx.status(200), ctx.json({ place: placeByIdMock }));
+    },
+  ),
 ];
 
 export const errorHandlers = [
@@ -41,4 +49,11 @@ export const errorHandlers = [
   rest.post(`${import.meta.env.VITE_API_URL}/places`, (_req, res, ctx) => {
     return res(ctx.status(500, "No se ha podido añadir el lugar"));
   }),
+
+  rest.get(
+    `${import.meta.env.VITE_API_URL}/places/${placeIdMock}`,
+    (_req, res, ctx) => {
+      return res(ctx.status(500, "No se ha podido obtener el lugar"));
+    },
+  ),
 ];

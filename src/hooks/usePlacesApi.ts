@@ -93,10 +93,28 @@ const usePlacesApi = () => {
     }
   };
 
+  const getPlaceById = async (id: string) => {
+    const token = await user?.getIdToken();
+
+    try {
+      const { data: apiPlace } = await axios.get(`${apiUrl}/places/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      const place = { ...apiPlace.place, id: apiPlace.place._id };
+      delete place._id;
+
+      return place;
+    } catch {
+      throw new Error("No se ha podido obtener el lugar");
+    }
+  };
+
   return {
     getPlaces,
     deletePlace,
     addPlace,
+    getPlaceById,
   };
 };
 
