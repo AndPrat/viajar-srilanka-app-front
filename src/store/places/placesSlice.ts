@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { PlacesState } from "./types";
 import { Place } from "../../types";
+import { PlacesState } from "./types";
 
 const initialPlacesState: PlacesState = {
   places: [],
@@ -33,6 +33,13 @@ const placesSlice = createSlice({
       ...currentPlaceState,
       places: [...currentPlaceState.places, action.payload],
     }),
+    loadSelectedPlace: (
+      currentPlaceState: PlacesState,
+      action: PayloadAction<Place>,
+    ): PlacesState => ({
+      ...currentPlaceState,
+      selectedPlace: action.payload,
+    }),
   },
 });
 
@@ -41,4 +48,5 @@ export const {
   loadPlaces: loadPlacesActionCreator,
   removePlace: removePlaceActionCreator,
   addPlace: addPlaceActionCreator,
+  loadSelectedPlace: loadSelectedPlaceActionCreator,
 } = placesSlice.actions;
