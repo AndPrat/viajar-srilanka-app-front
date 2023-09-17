@@ -4,8 +4,6 @@ import { store } from "../../store";
 import PlaceCard from "./PlaceCard";
 import { render, screen } from "@testing-library/react";
 
-const placePosition = 2;
-
 describe("Given a PlaceCard component", () => {
   describe("When it receives a place name 'Sigiriya'", () => {
     test("Then it should show the name 'Sigiriya' inside a heading", () => {
@@ -13,7 +11,7 @@ describe("Given a PlaceCard component", () => {
 
       render(
         <Provider store={store}>
-          <PlaceCard place={placeMock} placePosition={placePosition} />
+          <PlaceCard place={placeMock} isLazy={false} />
         </Provider>,
       );
 
@@ -31,7 +29,7 @@ describe("Given a PlaceCard component", () => {
 
       render(
         <Provider store={store}>
-          <PlaceCard place={placeMock} placePosition={placePosition} />
+          <PlaceCard place={placeMock} isLazy={false} />
         </Provider>,
       );
 
@@ -47,7 +45,7 @@ describe("Given a PlaceCard component", () => {
 
       render(
         <Provider store={store}>
-          <PlaceCard place={placeMock} placePosition={placePosition} />
+          <PlaceCard place={placeMock} isLazy={true} />
         </Provider>,
       );
 
@@ -63,7 +61,7 @@ describe("Given a PlaceCard component", () => {
 
       render(
         <Provider store={store}>
-          <PlaceCard place={placeMock} placePosition={placePosition} />
+          <PlaceCard place={placeMock} isLazy={false} />
         </Provider>,
       );
 

@@ -1,15 +1,10 @@
-import { Navigate, useNavigate } from "react-router-dom";
-import "./Homepage.css";
 import { signInWithPopup } from "firebase/auth";
-import paths from "../../routers/paths/paths";
-import { auth, gitHubProvider } from "../../firebase";
-import Button from "../../components/Button/Button";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { lazy } from "react";
-
-export const LazyHomepage = lazy(
-  () => import("../../pages/Homepage/Homepage.js"),
-);
+import { Navigate, useNavigate } from "react-router-dom";
+import Button from "../../components/Button/Button";
+import { auth, gitHubProvider } from "../../firebase";
+import paths from "../../routers/paths/paths";
+import "./Homepage.css";
 
 const Homepage = (): React.ReactElement => {
   const navigate = useNavigate();

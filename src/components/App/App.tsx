@@ -1,16 +1,18 @@
 import { Suspense } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { LazyHomepage } from "../../pages/Homepage/Homepage";
-import NewPlacePage from "../../pages/NewPlacePage/NewPlacePage";
-import { LazyPlaceLisPage } from "../../pages/PlacesListPage/PlacesListPage";
+import { auth } from "../../firebase";
+import {
+  LazyHomepage,
+  LazyNewPlacePage,
+  LazyPlaceLisPage,
+} from "../../pages/LazyPages/LazyPages";
 import paths from "../../routers/paths/paths";
 import Header from "../Header/Header";
 import NavigationBar from "../NavigationBar/NavigationBar";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../../firebase";
 
 const App = (): React.ReactElement => {
   const [user] = useAuthState(auth);
@@ -43,7 +45,7 @@ const App = (): React.ReactElement => {
             element={
               <ProtectedRoute>
                 <Suspense>
-                  <NewPlacePage />
+                  <LazyNewPlacePage />
                 </Suspense>
               </ProtectedRoute>
             }

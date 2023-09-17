@@ -8,12 +8,12 @@ import "./PlaceCard.css";
 
 export interface PlaceCardProps {
   place: Place;
-  placePosition: number;
+  isLazy: boolean;
 }
 
 const PlaceCard = ({
   place: { id, name, subtitle, location, image },
-  placePosition,
+  isLazy,
 }: PlaceCardProps): React.ReactElement => {
   const dispatch = useAppDispatch();
   const { deletePlace } = usePlacesApi();
@@ -39,7 +39,7 @@ const PlaceCard = ({
           width="271"
           height="249"
           className="place__image"
-          loading={placePosition < 2 ? "eager" : "lazy"}
+          {...(isLazy && { loading: "lazy" })}
         />
       </div>
       <div className="place__information">
