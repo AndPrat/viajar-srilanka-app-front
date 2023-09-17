@@ -226,4 +226,34 @@ describe("Given an App component", () => {
       expect(placeHeading).toBeInTheDocument();
     });
   });
+
+  describe("When the user is logged and the path is '/home'", () => {
+    test("Then it should show a heading 'Lugarés de interés'", async () => {
+      const user: Partial<User> = {
+        displayName: "Oscar",
+        getIdToken: vi.fn().mockResolvedValue("token"),
+      };
+
+      const authStateMock: Partial<AuthStateHook> = [user as User];
+      auth.useAuthState = vi.fn().mockReturnValue(authStateMock);
+
+      const useIdTokenHookMock: Partial<IdTokenHook> = [user as User];
+      auth.useIdToken = vi.fn().mockReturnValue(useIdTokenHookMock);
+      const expectedTextHeading = "Lugares de interés";
+
+      render(
+        <MemoryRouter initialEntries={[paths.homePage]}>
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </MemoryRouter>,
+      );
+
+      const heading = screen.getByRole("heading", {
+        name: expectedTextHeading,
+      });
+
+      expect(heading).toBeInTheDocument();
+    });
+  });
 });
