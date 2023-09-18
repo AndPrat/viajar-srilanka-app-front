@@ -19,6 +19,17 @@ const PlaceCard = ({
   const dispatch = useAppDispatch();
   const { deletePlace } = usePlacesApi();
 
+  const checkImageFromCloudinary = (imagePath: string) => {
+    if (imagePath.includes("cloudinary")) {
+      const cloudinaryPath = imagePath.substring(0, 50);
+      const cloudinaryImageId = imagePath.substring(62);
+      return `${cloudinaryPath}w_300,f_auto/${cloudinaryImageId}`;
+    }
+    return imagePath;
+  };
+
+  const processedImage = checkImageFromCloudinary(image);
+
   const removePlace = (id: string) => {
     deletePlace(id);
 
@@ -41,12 +52,13 @@ const PlaceCard = ({
           aria-label="detail-link"
         >
           <img
-            src={image}
+            src={processedImage}
             alt={`Lugar de Sri Lanka llamado ${name}`}
-            width="271"
-            height="249"
+            width="272"
+            height="204"
             className="place__image"
             {...(isLazy && { loading: "lazy" })}
+            aria-label="place-image"
           />
         </Link>
       </div>
