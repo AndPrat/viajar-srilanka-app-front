@@ -21,6 +21,7 @@ const PlaceCard = ({
 
   const removePlace = (id: string) => {
     deletePlace(id);
+
     dispatch(removePlaceActionCreator(id));
   };
 
@@ -34,7 +35,11 @@ const PlaceCard = ({
         >
           {iconDelete}
         </Button>
-        <Link to={`/places/${id}`} className="place__link">
+        <Link
+          to={`/places/${id}`}
+          className="place__link"
+          aria-label="detail-link"
+        >
           <img
             src={image}
             alt={`Lugar de Sri Lanka llamado ${name}`}
@@ -46,7 +51,11 @@ const PlaceCard = ({
         </Link>
       </div>
       <div className="place__information">
-        <Link to={`/places/${id}`} className="place__link">
+        <Link
+          to={`/places/${id}`}
+          className="place__link"
+          aria-label="detail-link"
+        >
           <h2 className="place__name">{name}</h2>
           <div className="place__list">
             <div className="place__location">

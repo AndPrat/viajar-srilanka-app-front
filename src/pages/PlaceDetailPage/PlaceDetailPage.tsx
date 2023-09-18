@@ -13,6 +13,7 @@ const PlaceDetailPage = () => {
   const { getPlaceById } = usePlacesApi();
   const dispatch = useAppDispatch();
   const { placeId } = useParams();
+
   const place = useAppSelector((state) => state.placesState.selectedPlace);
 
   useEffect(() => {
