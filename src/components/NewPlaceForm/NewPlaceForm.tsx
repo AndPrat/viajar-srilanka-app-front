@@ -4,13 +4,13 @@ import Button from "../Button/Button";
 import "./NewPlaceForm.css";
 
 interface NewPlaceProps {
-  actionOnSubmit: (places: Omit<Place, "id">) => void;
+  actionOnSubmit: (places: Omit<Place, "id" | "isFavorite">) => void;
 }
 
 const NewPlace = ({ actionOnSubmit }: NewPlaceProps): React.ReactElement => {
   const [canSubmit, setCanSubmit] = useState(false);
 
-  const initialPlaceData: Omit<Place, "id"> = {
+  const initialPlaceData: Omit<Place, "id" | "isFavorite"> = {
     name: "",
     subtitle: "",
     otherRelatedPlace: "",
@@ -20,9 +20,10 @@ const NewPlace = ({ actionOnSubmit }: NewPlaceProps): React.ReactElement => {
     description: "",
   };
 
-  const [newPlace, setNewPlace] = useState<Omit<Place, "id">>(initialPlaceData);
+  const [newPlace, setNewPlace] =
+    useState<Omit<Place, "id" | "isFavorite">>(initialPlaceData);
 
-  const NewPlaceForm = (
+  const newPlaceForm = (
     event:
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLTextAreaElement>,
@@ -58,7 +59,7 @@ const NewPlace = ({ actionOnSubmit }: NewPlaceProps): React.ReactElement => {
           id="name"
           className="place-form__input"
           value={newPlace.name}
-          onChange={NewPlaceForm}
+          onChange={newPlaceForm}
         />
       </div>
       <div className="place-form__group">
@@ -70,7 +71,7 @@ const NewPlace = ({ actionOnSubmit }: NewPlaceProps): React.ReactElement => {
           id="subtitle"
           className="place-form__input"
           value={newPlace.subtitle}
-          onChange={NewPlaceForm}
+          onChange={newPlaceForm}
         />
       </div>
       <div className="place-form__group">
@@ -82,7 +83,7 @@ const NewPlace = ({ actionOnSubmit }: NewPlaceProps): React.ReactElement => {
           id="location"
           className="place-form__input"
           value={newPlace.location}
-          onChange={NewPlaceForm}
+          onChange={newPlaceForm}
         />
       </div>
       <div className="place-form__group">
@@ -94,7 +95,7 @@ const NewPlace = ({ actionOnSubmit }: NewPlaceProps): React.ReactElement => {
           id="schedule"
           className="place-form__input"
           value={newPlace.schedule}
-          onChange={NewPlaceForm}
+          onChange={newPlaceForm}
         />
       </div>
       <div className="place-form__group">
@@ -106,7 +107,7 @@ const NewPlace = ({ actionOnSubmit }: NewPlaceProps): React.ReactElement => {
           id="otherRelatedPlace"
           className="place-form__input"
           value={newPlace.otherRelatedPlace}
-          onChange={NewPlaceForm}
+          onChange={newPlaceForm}
         />
       </div>
       <div className="place-form__group">
@@ -117,7 +118,7 @@ const NewPlace = ({ actionOnSubmit }: NewPlaceProps): React.ReactElement => {
           id="description"
           className="place-form__input"
           value={newPlace.description}
-          onChange={NewPlaceForm}
+          onChange={newPlaceForm}
         />
       </div>
       <div className="place-form__group">
@@ -129,7 +130,7 @@ const NewPlace = ({ actionOnSubmit }: NewPlaceProps): React.ReactElement => {
           id="image"
           className="place-form__input"
           value={newPlace.image}
-          onChange={NewPlaceForm}
+          onChange={newPlaceForm}
         />
       </div>
       <div className="place-form__group">

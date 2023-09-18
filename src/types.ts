@@ -7,6 +7,7 @@ export interface Place {
   otherRelatedPlace: string;
   description: string;
   image: string;
+  isFavorite: boolean;
 }
 
 export interface PlacesApi {
