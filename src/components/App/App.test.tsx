@@ -256,4 +256,48 @@ describe("Given an App component", () => {
       expect(heading).toBeInTheDocument();
     });
   });
+
+  describe("When it is rendered and receives 'Sigiriya' place id", () => {
+    test("Then it should show a heading with the text 'Descubre Sigiriya'", async () => {
+      const store = setupStore({
+        placesState: {
+          places: [placesMock[0]],
+        },
+      });
+
+      const expectedHeadingText = "Descubre Sigiriya";
+      const expectedLink = "detail-link";
+
+      const user: Partial<User> = {
+        displayName: "Oscar",
+        getIdToken: vi.fn().mockResolvedValue("token"),
+      };
+
+      const authStateHookMock: Partial<AuthStateHook> = [user as User];
+      auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+
+      const useIdTokenHookMock: Partial<IdTokenHook> = [user as User];
+      auth.useIdToken = vi.fn().mockReturnValue(useIdTokenHookMock);
+
+      const pathId = "/places/64fb41416d0350ec52f38917";
+
+      render(
+        <MemoryRouter initialEntries={[paths.places, pathId]} initialIndex={0}>
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </MemoryRouter>,
+      );
+
+      const link = await screen.findAllByLabelText(expectedLink);
+
+      await userEvent.click(link[0]);
+
+      const heading = await screen.findByRole("heading", {
+        name: expectedHeadingText,
+      });
+
+      expect(heading).toBeInTheDocument();
+    });
+  });
 });
