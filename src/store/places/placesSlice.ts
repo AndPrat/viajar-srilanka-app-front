@@ -40,6 +40,17 @@ const placesSlice = createSlice({
       ...currentPlaceState,
       selectedPlace: action.payload,
     }),
+    toggleByIdPlace: (
+      currentPlaceState,
+      action: PayloadAction<string>,
+    ): PlacesState => ({
+      ...currentPlaceState,
+      places: currentPlaceState.places.map<Place>((place) =>
+        place.id === action.payload
+          ? { ...place, isFavorite: !place.isFavorite }
+          : { ...place },
+      ),
+    }),
   },
 });
 
@@ -49,4 +60,5 @@ export const {
   removePlace: removePlaceActionCreator,
   addPlace: addPlaceActionCreator,
   loadSelectedPlace: loadSelectedPlaceActionCreator,
+  toggleByIdPlace: toggleByIdPlaceActionCreator,
 } = placesSlice.actions;

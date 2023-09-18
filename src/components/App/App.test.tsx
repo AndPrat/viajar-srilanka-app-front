@@ -164,7 +164,10 @@ describe("Given an App component", () => {
       auth.useIdToken = vi.fn().mockReturnValue(useIdTokenHookMock);
 
       render(
-        <MemoryRouter initialEntries={[paths.newPlace]}>
+        <MemoryRouter
+          initialEntries={[paths.newPlace, paths.places]}
+          initialIndex={0}
+        >
           <Provider store={store}>
             <App />
           </Provider>

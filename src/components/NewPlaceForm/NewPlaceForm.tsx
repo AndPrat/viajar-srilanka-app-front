@@ -8,8 +8,6 @@ interface NewPlaceProps {
 }
 
 const NewPlace = ({ actionOnSubmit }: NewPlaceProps): React.ReactElement => {
-  const [canSubmit, setCanSubmit] = useState(false);
-
   const initialPlaceData: Omit<Place, "id"> = {
     name: "",
     subtitle: "",
@@ -18,11 +16,14 @@ const NewPlace = ({ actionOnSubmit }: NewPlaceProps): React.ReactElement => {
     image: "",
     schedule: "",
     description: "",
+    isFavorite: false,
   };
 
   const [newPlace, setNewPlace] = useState<Omit<Place, "id">>(initialPlaceData);
 
-  const NewPlaceForm = (
+  const [disabled, setDisabled] = useState(true);
+
+  const newPlaceForm = (
     event:
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLTextAreaElement>,
@@ -30,6 +31,7 @@ const NewPlace = ({ actionOnSubmit }: NewPlaceProps): React.ReactElement => {
     setNewPlace((newPlace) => ({
       ...newPlace,
       [event.target.id]: event.target.value,
+      isFavorite: false,
     }));
   };
 
@@ -40,7 +42,7 @@ const NewPlace = ({ actionOnSubmit }: NewPlaceProps): React.ReactElement => {
   };
 
   useEffect(() => {
-    setCanSubmit(
+    setDisabled(
       Object.values(newPlace).every((value) => {
         return Boolean(value);
       }),
@@ -58,7 +60,7 @@ const NewPlace = ({ actionOnSubmit }: NewPlaceProps): React.ReactElement => {
           id="name"
           className="place-form__input"
           value={newPlace.name}
-          onChange={NewPlaceForm}
+          onChange={newPlaceForm}
         />
       </div>
       <div className="place-form__group">
@@ -70,7 +72,7 @@ const NewPlace = ({ actionOnSubmit }: NewPlaceProps): React.ReactElement => {
           id="subtitle"
           className="place-form__input"
           value={newPlace.subtitle}
-          onChange={NewPlaceForm}
+          onChange={newPlaceForm}
         />
       </div>
       <div className="place-form__group">
@@ -82,7 +84,7 @@ const NewPlace = ({ actionOnSubmit }: NewPlaceProps): React.ReactElement => {
           id="location"
           className="place-form__input"
           value={newPlace.location}
-          onChange={NewPlaceForm}
+          onChange={newPlaceForm}
         />
       </div>
       <div className="place-form__group">
@@ -94,7 +96,7 @@ const NewPlace = ({ actionOnSubmit }: NewPlaceProps): React.ReactElement => {
           id="schedule"
           className="place-form__input"
           value={newPlace.schedule}
-          onChange={NewPlaceForm}
+          onChange={newPlaceForm}
         />
       </div>
       <div className="place-form__group">
@@ -106,7 +108,7 @@ const NewPlace = ({ actionOnSubmit }: NewPlaceProps): React.ReactElement => {
           id="otherRelatedPlace"
           className="place-form__input"
           value={newPlace.otherRelatedPlace}
-          onChange={NewPlaceForm}
+          onChange={newPlaceForm}
         />
       </div>
       <div className="place-form__group">
@@ -117,7 +119,7 @@ const NewPlace = ({ actionOnSubmit }: NewPlaceProps): React.ReactElement => {
           id="description"
           className="place-form__input"
           value={newPlace.description}
-          onChange={NewPlaceForm}
+          onChange={newPlaceForm}
         />
       </div>
       <div className="place-form__group">
@@ -129,13 +131,14 @@ const NewPlace = ({ actionOnSubmit }: NewPlaceProps): React.ReactElement => {
           id="image"
           className="place-form__input"
           value={newPlace.image}
-          onChange={NewPlaceForm}
+          onChange={newPlaceForm}
         />
       </div>
       <div className="place-form__group">
         <Button
           className="button button--primary button--large"
-          disabled={!canSubmit}
+          type="submit"
+          disabled={disabled}
         >
           Añadir un lugar
         </Button>
