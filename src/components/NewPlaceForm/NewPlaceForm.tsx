@@ -4,13 +4,11 @@ import Button from "../Button/Button";
 import "./NewPlaceForm.css";
 
 interface NewPlaceProps {
-  actionOnSubmit: (places: Omit<Place, "id" | "isFavorite">) => void;
+  actionOnSubmit: (places: Omit<Place, "id">) => void;
 }
 
 const NewPlace = ({ actionOnSubmit }: NewPlaceProps): React.ReactElement => {
-  const [canSubmit, setCanSubmit] = useState(false);
-
-  const initialPlaceData: Omit<Place, "id" | "isFavorite"> = {
+  const initialPlaceData: Omit<Place, "id"> = {
     name: "",
     subtitle: "",
     otherRelatedPlace: "",
@@ -18,10 +16,12 @@ const NewPlace = ({ actionOnSubmit }: NewPlaceProps): React.ReactElement => {
     image: "",
     schedule: "",
     description: "",
+    isFavorite: false,
   };
 
-  const [newPlace, setNewPlace] =
-    useState<Omit<Place, "id" | "isFavorite">>(initialPlaceData);
+  const [newPlace, setNewPlace] = useState<Omit<Place, "id">>(initialPlaceData);
+
+  const [disabled, setDisabled] = useState(true);
 
   const newPlaceForm = (
     event:
@@ -31,6 +31,7 @@ const NewPlace = ({ actionOnSubmit }: NewPlaceProps): React.ReactElement => {
     setNewPlace((newPlace) => ({
       ...newPlace,
       [event.target.id]: event.target.value,
+      isFavorite: false,
     }));
   };
 
@@ -41,7 +42,7 @@ const NewPlace = ({ actionOnSubmit }: NewPlaceProps): React.ReactElement => {
   };
 
   useEffect(() => {
-    setCanSubmit(
+    setDisabled(
       Object.values(newPlace).every((value) => {
         return Boolean(value);
       }),
@@ -136,7 +137,8 @@ const NewPlace = ({ actionOnSubmit }: NewPlaceProps): React.ReactElement => {
       <div className="place-form__group">
         <Button
           className="button button--primary button--large"
-          disabled={!canSubmit}
+          type="submit"
+          disabled={disabled}
         >
           Añadir un lugar
         </Button>
