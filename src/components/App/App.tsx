@@ -7,6 +7,7 @@ import { auth } from "../../firebase";
 import {
   LazyHomepage,
   LazyNewPlacePage,
+  LazyPlaceDetailPage,
   LazyPlaceLisPage,
 } from "../../pages/LazyPages/LazyPages";
 import paths from "../../routers/paths/paths";
@@ -50,7 +51,16 @@ const App = (): React.ReactElement => {
               </ProtectedRoute>
             }
           ></Route>
-
+          <Route
+            path={paths.detailPlace}
+            element={
+              <ProtectedRoute>
+                <Suspense>
+                  <LazyPlaceDetailPage />
+                </Suspense>
+              </ProtectedRoute>
+            }
+          ></Route>
           <Route path="/" element={<Navigate to={paths.places} />} />
         </Routes>
         {user && <NavigationBar />}

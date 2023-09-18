@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import usePlacesApi from "../../hooks/usePlacesApi";
 import { iconDelete, iconLoaction } from "../../icons/icons";
 import { useAppDispatch } from "../../store";
@@ -20,6 +21,7 @@ const PlaceCard = ({
 
   const removePlace = (id: string) => {
     deletePlace(id);
+
     dispatch(removePlaceActionCreator(id));
   };
 
@@ -33,24 +35,36 @@ const PlaceCard = ({
         >
           {iconDelete}
         </Button>
-        <img
-          src={image}
-          alt={`Lugar de Sri Lanka llamado ${name}`}
-          width="271"
-          height="249"
-          className="place__image"
-          {...(isLazy && { loading: "lazy" })}
-        />
+        <Link
+          to={`/places/${id}`}
+          className="place__link"
+          aria-label="detail-link"
+        >
+          <img
+            src={image}
+            alt={`Lugar de Sri Lanka llamado ${name}`}
+            width="271"
+            height="249"
+            className="place__image"
+            {...(isLazy && { loading: "lazy" })}
+          />
+        </Link>
       </div>
       <div className="place__information">
-        <h2 className="place__name">{name}</h2>
-        <div className="place__list">
-          <div className="place__location">
-            <i className="place__location-icon">{iconLoaction}</i>
-            {location}
+        <Link
+          to={`/places/${id}`}
+          className="place__link"
+          aria-label="detail-link"
+        >
+          <h2 className="place__name">{name}</h2>
+          <div className="place__list">
+            <div className="place__location">
+              <i className="place__location-icon">{iconLoaction}</i>
+              {location}
+            </div>
+            <span className="place__subtitle">{subtitle}</span>
           </div>
-          <span className="place__subtitle">{subtitle}</span>
-        </div>
+        </Link>
       </div>
     </article>
   );

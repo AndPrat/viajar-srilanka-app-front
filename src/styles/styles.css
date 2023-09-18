@@ -62,3 +62,7 @@ textarea {
 .main-content {
   padding-top: 80px;
 }
+
+p {
+  margin-top: 0;
+}

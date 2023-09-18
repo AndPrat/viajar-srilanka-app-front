@@ -3,6 +3,7 @@ import { placeMock } from "../../mocks/placeMock";
 import { store } from "../../store";
 import PlaceCard from "./PlaceCard";
 import { render, screen } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
 
 describe("Given a PlaceCard component", () => {
   describe("When it receives a place name 'Sigiriya'", () => {
@@ -10,9 +11,12 @@ describe("Given a PlaceCard component", () => {
       const expectedHeadingText = "Sigiriya";
 
       render(
-        <Provider store={store}>
-          <PlaceCard place={placeMock} isLazy={false} />
-        </Provider>,
+        <BrowserRouter>
+          <Provider store={store}>
+            <PlaceCard place={placeMock} isLazy={false} />
+          </Provider>
+          ,
+        </BrowserRouter>,
       );
 
       const placeHeading = screen.getByRole("heading", {
@@ -28,9 +32,12 @@ describe("Given a PlaceCard component", () => {
       const expectedSubtilteText = "Templo de la roca del león";
 
       render(
-        <Provider store={store}>
-          <PlaceCard place={placeMock} isLazy={false} />
-        </Provider>,
+        <BrowserRouter>
+          <Provider store={store}>
+            <PlaceCard place={placeMock} isLazy={false} />
+          </Provider>
+          ,
+        </BrowserRouter>,
       );
 
       const subtitleText = screen.getByText(expectedSubtilteText);
@@ -44,9 +51,12 @@ describe("Given a PlaceCard component", () => {
       const expectedLocationText = "Matale";
 
       render(
-        <Provider store={store}>
-          <PlaceCard place={placeMock} isLazy={true} />
-        </Provider>,
+        <BrowserRouter>
+          <Provider store={store}>
+            <PlaceCard place={placeMock} isLazy={true} />
+          </Provider>
+          ,
+        </BrowserRouter>,
       );
 
       const locationText = screen.getByText(expectedLocationText);
@@ -60,9 +70,12 @@ describe("Given a PlaceCard component", () => {
       const expectedAltText = "Lugar de Sri Lanka llamado Sigiriya";
 
       render(
-        <Provider store={store}>
-          <PlaceCard place={placeMock} isLazy={false} />
-        </Provider>,
+        <BrowserRouter>
+          <Provider store={store}>
+            <PlaceCard place={placeMock} isLazy={false} />
+          </Provider>
+          ,
+        </BrowserRouter>,
       );
 
       const imageAltText = screen.getByAltText(expectedAltText);

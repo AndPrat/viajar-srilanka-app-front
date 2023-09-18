@@ -3,6 +3,7 @@ import { placesMock } from "../../mocks/placeMock";
 import { setupStore } from "../../store";
 import PlacesList from "./PlacesList";
 import { render, screen } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
 
 describe("Given a PlacesList component", () => {
   describe("When it is rendered with 'Sigiriya' and 'Ahas Namaye Palama' places", () => {
@@ -14,9 +15,12 @@ describe("Given a PlacesList component", () => {
       });
 
       render(
-        <Provider store={store}>
-          <PlacesList />
-        </Provider>,
+        <BrowserRouter>
+          <Provider store={store}>
+            <PlacesList />
+          </Provider>
+          ,
+        </BrowserRouter>,
       );
 
       placesMock.forEach(({ name }) => {
