@@ -39,7 +39,7 @@ export const placeMock: Place = {
   description:
     "La inmensa e imponente Roca del León o Lion Rock de Sigiriya, nacida de una erupción volcánica, emerge como un titán en el paisaje de la ciudad, que ineludiblemente ha ligado su historia a ella.",
   image:
-    "https://www.storiesbysoumya.com/wp-content/uploads/2021/11/sigiriya-rock-fortress-768x432.jpg",
+    "https://res.cloudinary.com/ds7klnuyj/image/upload/v1694588057/Sri-Lanka-places/lugar-sigiriya.webp",
   isFavorite: false,
 };
 

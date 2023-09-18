@@ -83,4 +83,23 @@ describe("Given a PlaceCard component", () => {
       expect(imageAltText).toBeInTheDocument();
     });
   });
+
+  describe("When it receives a imatge with 'cloudinary' path", () => {
+    test("Then it should show an imatge with 'cloudinary' path", () => {
+      const expectedImage = "place-image";
+
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <PlaceCard place={placeMock} isLazy={false} />
+          </Provider>
+          ,
+        </BrowserRouter>,
+      );
+
+      const cloudinaryImage = screen.getByLabelText(expectedImage);
+
+      expect(cloudinaryImage).toBeInTheDocument();
+    });
+  });
 });
