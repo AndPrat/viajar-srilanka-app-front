@@ -42,13 +42,12 @@ const placesSlice = createSlice({
     }),
     toggleByIdPlace: (
       currentPlaceState,
-      action: PayloadAction<string>,
+      action: PayloadAction<Place>,
     ): PlacesState => ({
       ...currentPlaceState,
-      places: currentPlaceState.places.map<Place>((place) =>
-        place.id === action.payload
-          ? { ...place, isFavorite: !place.isFavorite }
-          : { ...place },
+      selectedPlace: action.payload,
+      places: currentPlaceState.places.map((place) =>
+        place.id === action.payload.id ? action.payload : place,
       ),
     }),
   },

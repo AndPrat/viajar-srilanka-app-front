@@ -9,7 +9,7 @@ import {
 import { Provider } from "react-redux";
 import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import { beforeEach } from "vitest";
-import { placeMock, placesMock } from "../../mocks/placeMock";
+import { placeMock, placesMock, placesMockModify } from "../../mocks/placeMock";
 import paths from "../../routers/paths/paths";
 import { setupStore } from "../../store";
 import App from "./App";
@@ -301,6 +301,43 @@ describe("Given an App component", () => {
       });
 
       expect(heading).toBeInTheDocument();
+    });
+  });
+
+  describe("When it is rendered and receives button with arial label 'toggle-button' with isFavorite false", () => {
+    test("Then it should show a button with isFavorite true", async () => {
+      const store = setupStore({
+        placesState: {
+          places: [placesMockModify[0]],
+        },
+      });
+
+      const expectedButton = "toggle-button";
+      const expectedButtonFavorite = "no favorite";
+
+      const user: Partial<User> = { displayName: "Oscar" };
+
+      const authStateMock: Partial<AuthStateHook> = [user as User];
+
+      auth.useAuthState = vi.fn().mockReturnValue(authStateMock);
+
+      render(
+        <MemoryRouter initialEntries={[paths.places]}>
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </MemoryRouter>,
+      );
+
+      const isFavoriteButton = await screen.findAllByLabelText(
+        expectedButtonFavorite,
+      );
+
+      await userEvent.click(isFavoriteButton[0]);
+
+      const button = await screen.findAllByLabelText(expectedButton);
+
+      expect(button[0]).toBeInTheDocument();
     });
   });
 });
