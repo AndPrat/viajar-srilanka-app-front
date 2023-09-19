@@ -146,3 +146,17 @@ export const idPlaceMockApi: PlaceApi = {
     "https://res.cloudinary.com/ds7klnuyj/image/upload/v1694588057/Sri-Lanka-places/lugar-sigiriya.webp",
   isFavorite: false,
 };
+
+export const placeMockModify: Place = {
+  id: "64fb41416d0350ec52f38917",
+  name: "Sigiriya",
+  subtitle: "Templo de la roca del león",
+  location: "Matale",
+  schedule: "8h a 17h",
+  otherRelatedPlace: "Mirador Pidurangala",
+  description:
+    "La inmensa e imponente Roca del León o Lion Rock de Sigiriya, nacida de una erupción volcánica, emerge como un titán en el paisaje de la ciudad, que ineludiblemente ha ligado su historia a ella.",
+  image:
+    "https://res.cloudinary.com/ds7klnuyj/image/upload/v1694588057/Sri-Lanka-places/lugar-sigiriya.webp",
+  isFavorite: true,
+};
