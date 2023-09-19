@@ -44,17 +44,22 @@ const usePlacesApi = () => {
 
   const deletePlace = async (_id: string) => {
     const token = await user?.getIdToken();
+
+    dispatch(showLoadingActionCreator());
     try {
       const {
         data: { message },
       } = await axios.delete(`${apiUrl}/places/${_id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
+      dispatch(hideLoadingActionCreator());
 
       showFeedback(message, "success");
 
       return message;
     } catch {
+      dispatch(hideLoadingActionCreator());
+
       showFeedback("No se ha podido borrar el lugar", "error");
 
       throw new Error("No se ha podido borrar el lugar");
@@ -81,6 +86,7 @@ const usePlacesApi = () => {
       delete place._id;
 
       dispatch(hideLoadingActionCreator());
+
       showFeedback("El lugar se ha añadido con éxito", "success");
 
       return place;
@@ -137,7 +143,9 @@ const usePlacesApi = () => {
         id: apiPlace.place._id,
       };
       delete place._id;
+
       dispatch(hideLoadingActionCreator());
+
       showFeedback("El lugar se ha añadido a favoritos con éxito", "success");
 
       return place;
