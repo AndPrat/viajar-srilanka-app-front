@@ -2,6 +2,8 @@ import { rest } from "msw";
 import {
   addPlaceMock,
   apiPlacesMock,
+  idPlaceMock,
+  placeMock,
   placeByIdMock,
   placeIdMock,
   wrongPlaceIdMock,
@@ -32,6 +34,16 @@ export const handlers = [
       return res(ctx.status(200), ctx.json({ place: placeByIdMock }));
     },
   ),
+
+  rest.patch(
+    `${import.meta.env.VITE_API_URL}/places/${idPlaceMock.id}`,
+    (_req, res, ctx) => {
+      return res(
+        ctx.status(200),
+        ctx.json({ place: { ...placeMock, isFavorite: true } }),
+      );
+    },
+  ),
 ];
 
 export const errorHandlers = [
@@ -54,6 +66,13 @@ export const errorHandlers = [
     `${import.meta.env.VITE_API_URL}/places/${placeIdMock}`,
     (_req, res, ctx) => {
       return res(ctx.status(500, "No se ha podido obtener el lugar"));
+    },
+  ),
+
+  rest.patch(
+    `${import.meta.env.VITE_API_URL}/places/${idPlaceMock.id}`,
+    (_req, res, ctx) => {
+      return res(ctx.status(500, "No se ha podido añadir a favoritos"));
     },
   ),
 ];
