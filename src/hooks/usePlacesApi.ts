@@ -105,6 +105,8 @@ const usePlacesApi = () => {
         const place = { ...apiPlace.place, id: apiPlace.place._id };
         delete place._id;
 
+        showFeedback("El lugar se ha añadido a favoritos con éxito", "success");
+
         return place;
       } catch {
         throw new Error("No se ha podido obtener el lugar");
@@ -118,6 +120,7 @@ const usePlacesApi = () => {
 
     const favorite = isFavorite ? "true" : "false";
 
+    dispatch(showLoadingActionCreator());
     try {
       const { data: apiPlace } = await axios.patch(
         `${apiUrl}/places/${id}`,
@@ -134,9 +137,13 @@ const usePlacesApi = () => {
         id: apiPlace.place._id,
       };
       delete place._id;
+      dispatch(hideLoadingActionCreator());
+      showFeedback("El lugar se ha añadido a favoritos con éxito", "success");
 
       return place;
     } catch {
+      dispatch(hideLoadingActionCreator());
+
       showFeedback("No se ha podido añadir a favoritos", "error");
       throw new Error("No se ha podido añadir a favoritos");
     }
