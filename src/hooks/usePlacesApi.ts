@@ -113,11 +113,38 @@ const usePlacesApi = () => {
     [user, apiUrl],
   );
 
+  const togglePlace = async (id: string, isFavorite: boolean) => {
+    const token = await user?.getIdToken();
+    try {
+      const { data: apiPlace } = await axios.patch(
+        `${apiUrl}/places/${id}`,
+        { isFavorite },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      const place = {
+        ...apiPlace.place,
+        id: apiPlace.place._id,
+      };
+      delete place._id;
+
+      return place;
+    } catch {
+      showFeedback("No se ha podido añadir a favoritos", "error");
+
+      throw new Error("No se ha podido añadir a favoritos");
+    }
+  };
+
   return {
     getPlaces,
     deletePlace,
     addPlace,
     getPlaceById,
+    togglePlace,
   };
 };
 
