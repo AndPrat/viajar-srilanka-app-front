@@ -1,8 +1,16 @@
 import { Link } from "react-router-dom";
 import usePlacesApi from "../../hooks/usePlacesApi";
-import { iconDelete, iconLoaction } from "../../icons/icons";
+import {
+  iconDelete,
+  iconHeart,
+  iconHeartFavorite,
+  iconLoaction,
+} from "../../icons/icons";
 import { useAppDispatch } from "../../store";
-import { removePlaceActionCreator } from "../../store/places/placesSlice";
+import {
+  removePlaceActionCreator,
+  toggleByIdPlaceActionCreator,
+} from "../../store/places/placesSlice";
 import { Place } from "../../types";
 import Button from "../Button/Button";
 import "./PlaceCard.css";
@@ -13,11 +21,11 @@ export interface PlaceCardProps {
 }
 
 const PlaceCard = ({
-  place: { id, name, subtitle, location, image },
+  place: { id, name, subtitle, location, image, isFavorite },
   isLazy,
 }: PlaceCardProps): React.ReactElement => {
   const dispatch = useAppDispatch();
-  const { deletePlace } = usePlacesApi();
+  const { deletePlace, togglePlace } = usePlacesApi();
 
   const checkImageFromCloudinary = (imagePath: string) => {
     if (imagePath.includes("cloudinary")) {
@@ -34,6 +42,12 @@ const PlaceCard = ({
     deletePlace(id);
 
     dispatch(removePlaceActionCreator(id));
+  };
+
+  const modifyPlace = async (isFavorite: boolean) => {
+    const favoritePlace = await togglePlace(id, isFavorite);
+
+    dispatch(toggleByIdPlaceActionCreator(favoritePlace));
   };
 
   return (
@@ -61,6 +75,13 @@ const PlaceCard = ({
             aria-label="place-image"
           />
         </Link>
+        <Button
+          className="button button--icon button--medium button--toogle"
+          actionOnClick={() => modifyPlace(isFavorite)}
+          aria-label="toggle-button"
+        >
+          {isFavorite ? iconHeartFavorite : iconHeart}
+        </Button>
       </div>
       <div className="place__information">
         <Link
