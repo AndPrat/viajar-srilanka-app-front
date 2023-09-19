@@ -15,6 +15,7 @@ import {
   placeByIdMock,
   placeIdMock,
   placeMock,
+  placeMockModify,
   placesMock,
   wrongPlaceIdMock,
 } from "../mocks/placeMock";
@@ -260,6 +261,37 @@ describe("Given a function togglePlace", () => {
       const modifyPlace = await togglePlace(
         idPlaceMock.id,
         placeMock.isFavorite,
+      );
+
+      expect(modifyPlace).toHaveProperty("isFavorite", true);
+    });
+  });
+});
+
+describe("Given a function togglePlace", () => {
+  const user: Partial<User> = {
+    getIdToken: vi.fn().mockResolvedValue("token"),
+  };
+
+  const authStateHookMock: Partial<AuthStateHook> = [user as User];
+  auth.useIdToken = vi.fn().mockReturnValue([user]);
+  auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+
+  describe("When the function is called", () => {
+    test("Then it should return the place 'Sigiriya' with isFavorite property set to 'true'", async () => {
+      const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
+        return <Provider store={store}>{children}</Provider>;
+      };
+
+      const {
+        result: {
+          current: { togglePlace },
+        },
+      } = renderHook(() => usePlacesApi(), { wrapper });
+
+      const modifyPlace = await togglePlace(
+        idPlaceMock.id,
+        placeMockModify.isFavorite,
       );
 
       expect(modifyPlace).toHaveProperty("isFavorite", true);
