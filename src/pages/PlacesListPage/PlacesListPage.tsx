@@ -17,12 +17,22 @@ const PlacesListPage = (): React.ReactElement => {
   const dispatch = useAppDispatch();
   const { getPlaces } = usePlacesApi();
 
+  const preloadImage = (image: string) => {
+    const preloadImageLink = document.createElement("link");
+    preloadImageLink.href = image;
+    preloadImageLink.rel = "preload";
+    preloadImageLink.as = "image";
+    document.head.appendChild(preloadImageLink);
+  };
+
   useEffect(() => {
     (async () => {
       if (user) {
         const places = await getPlaces();
 
         dispatch(loadPlacesActionCreator(places));
+
+        preloadImage(places[0].image);
       }
     })();
   }, [dispatch, getPlaces, user]);
