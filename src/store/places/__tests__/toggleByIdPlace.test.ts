@@ -1,4 +1,8 @@
-import { placeIdMock, placesMock } from "../../../mocks/placeMock";
+import {
+  placeIdMock,
+  placeMockModify,
+  placesMock,
+} from "../../../mocks/placeMock";
 import { placesReducer, toggleByIdPlaceActionCreator } from "../placesSlice";
 import { PlacesState } from "../types";
 
@@ -10,7 +14,8 @@ describe("Given a toggleByIdPlace reducer", () => {
       };
       const placeId = placeIdMock;
 
-      const toggleByIdPlaceAction = toggleByIdPlaceActionCreator(placeId);
+      const toggleByIdPlaceAction =
+        toggleByIdPlaceActionCreator(placeMockModify);
 
       const newPlaceState = placesReducer(
         currentPlaceState,
