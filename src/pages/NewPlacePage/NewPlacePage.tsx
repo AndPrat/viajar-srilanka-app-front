@@ -6,6 +6,7 @@ import { Place } from "../../types.js";
 import "./NewPlacePage.css";
 import { useNavigate } from "react-router-dom";
 import paths from "../../routers/paths/paths.js";
+import { Helmet } from "react-helmet";
 
 const NewPlacePage = (): React.ReactElement => {
   const { addPlace } = usePlacesApi();
@@ -21,6 +22,14 @@ const NewPlacePage = (): React.ReactElement => {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Crear un nuevo lugar</title>
+        <meta
+          name="description"
+          content="Crea, con el formulario, un nuevo lugar de Sri Lanka para añadir al listado"
+        />
+      </Helmet>
       <h1 className="newPlace__title">Añade un lugar</h1>
       <NewPlaceForm actionOnSubmit={actionOnSubmit} />
     </>
