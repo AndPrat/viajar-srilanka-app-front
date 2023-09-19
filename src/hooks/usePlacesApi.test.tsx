@@ -210,7 +210,7 @@ describe("Given a function getPlaceById", () => {
     });
 
     describe("When the function is called and the place couldn't load", () => {
-      test("hen it should the error message 'No se ha podido obtener el lugar' when rejecting", () => {
+      test("Then it should the error message 'No se ha podido obtener el lugar' when rejecting", () => {
         const wrapper = ({
           children,
         }: PropsWithChildren): React.ReactElement => {
@@ -232,6 +232,59 @@ describe("Given a function getPlaceById", () => {
 
         expect(placeById).rejects.toThrowError(expectedError);
       });
+    });
+  });
+});
+
+describe("Given a function togglePlace", () => {
+  const user: Partial<User> = {
+    getIdToken: vi.fn().mockResolvedValue("token"),
+  };
+
+  const authStateHookMock: Partial<AuthStateHook> = [user as User];
+  auth.useIdToken = vi.fn().mockReturnValue([user]);
+  auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+
+  describe("When the function is called", () => {
+    test("Then it should return the place 'Sigiriya' with isFavorite property set to 'true'", async () => {
+      const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
+        return <Provider store={store}>{children}</Provider>;
+      };
+
+      const {
+        result: {
+          current: { togglePlace },
+        },
+      } = renderHook(() => usePlacesApi(), { wrapper });
+
+      const modifyPlace = await togglePlace(
+        idPlaceMock.id,
+        placeMock.isFavorite,
+      );
+
+      expect(modifyPlace).toHaveProperty("isFavorite", true);
+    });
+  });
+
+  describe("When the function is called and the modification couldn't modify and there is an error", () => {
+    test("Then it should show the error message 'No se ha podido añadir a favoritos'", () => {
+      const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
+        return <Provider store={store}>{children}</Provider>;
+      };
+
+      server.resetHandlers(...errorHandlers);
+
+      const expectedError = new Error("No se ha podido añadir a favoritos");
+
+      const {
+        result: {
+          current: { togglePlace },
+        },
+      } = renderHook(() => usePlacesApi(), { wrapper });
+
+      const place = togglePlace(idPlaceMock.id, placeMock.isFavorite);
+
+      expect(place).rejects.toThrowError(expectedError);
     });
   });
 });
