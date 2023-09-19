@@ -25,8 +25,8 @@
 }
 
 .navigation__link.active {
-  font-weight: 700;
-  color: var(--color-orange);
+  font-weight: 800;
+  color: var(--color-purple-dark);
 }
 
 .navigation__icon {
