@@ -1,4 +1,4 @@
-import { signInWithPopup } from "firebase/auth";
+import { browserPopupRedirectResolver, signInWithPopup } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Navigate, useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
@@ -12,7 +12,7 @@ const Homepage = (): React.ReactElement => {
   const [user] = useAuthState(auth);
 
   const login = async () => {
-    await signInWithPopup(auth, gitHubProvider);
+    await signInWithPopup(auth, gitHubProvider, browserPopupRedirectResolver);
     navigate(paths.places);
   };
 
