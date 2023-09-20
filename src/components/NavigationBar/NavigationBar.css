@@ -29,6 +29,17 @@
   color: var(--color-purple-dark);
 }
 
+.navigation__link__inactive {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-purple-dark);
+  text-align: center;
+  width: 80px;
+}
+
 .navigation__icon {
   color: var(--color-orange);
   margin-bottom: 8px;
