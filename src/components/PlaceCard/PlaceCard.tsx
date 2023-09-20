@@ -27,17 +27,6 @@ const PlaceCard = ({
   const dispatch = useAppDispatch();
   const { deletePlace, togglePlace } = usePlacesApi();
 
-  const checkImageFromCloudinary = (imagePath: string) => {
-    if (imagePath.includes("cloudinary")) {
-      const cloudinaryPath = imagePath.substring(0, 50);
-      const cloudinaryImageId = imagePath.substring(62);
-      return `${cloudinaryPath}w_300,f_auto/${cloudinaryImageId}`;
-    }
-    return imagePath;
-  };
-
-  const processedImage = checkImageFromCloudinary(image);
-
   const removePlace = (id: string) => {
     deletePlace(id);
 
@@ -66,7 +55,7 @@ const PlaceCard = ({
           aria-label="detail-link"
         >
           <img
-            src={processedImage}
+            src={image}
             alt={`Lugar de Sri Lanka llamado ${name}`}
             width="272"
             height="204"
