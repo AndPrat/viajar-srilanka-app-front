@@ -7,8 +7,8 @@ import { placesReducer, toggleByIdPlaceActionCreator } from "../placesSlice";
 import { PlacesState } from "../types";
 
 describe("Given a toggleByIdPlace reducer", () => {
-  describe("When it receives a placeState and a toggleByIdPlace action with false", () => {
-    test("Then it should return a new state with the isFavorite property of 'Sigiriya' togled to true", () => {
+  describe("When it receives a placeState with a place 'Sigiriya' with property isFavorite set to false and a toggleByIdPlace action", () => {
+    test("Then it should return a new state with the isFavorite property toggled to true", () => {
       const currentPlaceState: PlacesState = {
         places: placesMock,
       };
