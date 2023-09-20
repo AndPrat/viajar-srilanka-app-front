@@ -24,10 +24,10 @@ const NewPlacePage = (): React.ReactElement => {
     <>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Crear un nuevo lugar</title>
+        <title>Viajar a Sri Lanka | Añade un nuevo lugar</title>
         <meta
           name="description"
-          content="Crea, con el formulario, un nuevo lugar de Sri Lanka para añadir al listado"
+          content="Añade, con el formulario, un nuevo lugar de Sri Lanka para añadir al listado"
         />
       </Helmet>
       <h1 className="newPlace__title">Añade un lugar</h1>

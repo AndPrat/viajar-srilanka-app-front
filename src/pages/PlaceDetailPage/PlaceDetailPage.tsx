@@ -17,7 +17,7 @@ const PlaceDetailPage = () => {
   const place = useAppSelector((state) => state.placesState.selectedPlace);
 
   useEffect(() => {
-    document.title = `Descubre ${place?.name}`;
+    document.title = `Viajar a Sri Lanka | Descubre ${place?.name}`;
   }, [place?.name]);
 
   useEffect(() => {

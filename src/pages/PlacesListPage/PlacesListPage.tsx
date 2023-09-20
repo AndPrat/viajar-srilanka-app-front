@@ -41,7 +41,7 @@ const PlacesListPage = (): React.ReactElement => {
     <>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Lugares de interés</title>
+        <title>Viajar a Sri Lanka | Lugares de interés</title>
         <meta
           name="description"
           content="El listado de los lugares que hay que visitar de Sri Lanka"
