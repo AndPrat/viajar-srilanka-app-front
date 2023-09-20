@@ -1,12 +1,12 @@
+import { Helmet } from "react-helmet";
+import { useNavigate } from "react-router-dom";
 import NewPlaceForm from "../../components/NewPlaceForm/NewPlaceForm.js";
 import usePlacesApi from "../../hooks/usePlacesApi.js";
+import paths from "../../routers/paths/paths.js";
 import { useAppDispatch } from "../../store/index.js";
 import { addPlaceActionCreator } from "../../store/places/placesSlice.js";
 import { Place } from "../../types.js";
 import "./NewPlacePage.css";
-import { useNavigate } from "react-router-dom";
-import paths from "../../routers/paths/paths.js";
-import { Helmet } from "react-helmet";
 
 const NewPlacePage = (): React.ReactElement => {
   const { addPlace } = usePlacesApi();

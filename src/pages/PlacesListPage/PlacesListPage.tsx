@@ -46,6 +46,7 @@ const PlacesListPage = (): React.ReactElement => {
           name="description"
           content="El listado de los lugares que hay que visitar de Sri Lanka"
         />
+        <meta httpEquiv="Cache-Control" content="max-age=3600" />
       </Helmet>
       <h1 className="places__title">Lugares de interés</h1>
       {isLoadingUi && <Loading />}
