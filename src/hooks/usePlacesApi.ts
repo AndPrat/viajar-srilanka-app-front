@@ -111,8 +111,6 @@ const usePlacesApi = () => {
         const place = { ...apiPlace.place, id: apiPlace.place._id };
         delete place._id;
 
-        showFeedback("El lugar se ha añadido a favoritos con éxito", "success");
-
         return place;
       } catch {
         throw new Error("No se ha podido obtener el lugar");
@@ -145,8 +143,6 @@ const usePlacesApi = () => {
       delete place._id;
 
       dispatch(hideLoadingActionCreator());
-
-      showFeedback("El lugar se ha añadido a favoritos con éxito", "success");
 
       return place;
     } catch {
