@@ -5,6 +5,7 @@ import { placesMock } from "../../mocks/placeMock";
 import { Provider } from "react-redux";
 import { Auth } from "firebase-admin/auth";
 import React from "react";
+import { BrowserRouter } from "react-router-dom";
 
 describe("Given a PlacesListPage component", () => {
   vi.mock("react", async () => {
@@ -25,13 +26,16 @@ describe("Given a PlacesListPage component", () => {
       });
 
       render(
-        <Provider store={store}>
-          <React.Suspense>
+        <BrowserRouter>
+          <Provider store={store}>
             <React.Suspense>
-              <PlacesListPage />
+              <React.Suspense>
+                <PlacesListPage />
+              </React.Suspense>
             </React.Suspense>
-          </React.Suspense>
-        </Provider>,
+          </Provider>
+          ,
+        </BrowserRouter>,
       );
 
       const heading = screen.getByRole("heading", {
@@ -53,9 +57,12 @@ describe("Given a PlacesListPage component", () => {
       });
 
       render(
-        <Provider store={store}>
-          <PlacesListPage />
-        </Provider>,
+        <BrowserRouter>
+          <Provider store={store}>
+            <PlacesListPage />
+          </Provider>
+          ,
+        </BrowserRouter>,
       );
 
       const headingText = await screen.findByRole("heading", {

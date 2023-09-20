@@ -22,6 +22,7 @@ import {
 import { server } from "../mocks/server";
 import { store } from "../store";
 import usePlacesApi from "./usePlacesApi";
+import { BrowserRouter } from "react-router-dom";
 
 beforeEach(() => {
   vi.clearAllMocks();
@@ -39,7 +40,11 @@ describe("Given a function getPlaces", () => {
   describe("When the function is called", () => {
     test("Then it should receives a list of places", async () => {
       const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
-        return <Provider store={store}>{children}</Provider>;
+        return (
+          <BrowserRouter>
+            <Provider store={store}>{children}</Provider>
+          </BrowserRouter>
+        );
       };
 
       const {
@@ -56,7 +61,11 @@ describe("Given a function getPlaces", () => {
 
   test("Then it should throw an error 'Couldn't load places' when rejecting", () => {
     const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
-      return <Provider store={store}>{children}</Provider>;
+      return (
+        <BrowserRouter>
+          <Provider store={store}>{children}</Provider>
+        </BrowserRouter>
+      );
     };
 
     server.resetHandlers(...errorHandlers);
@@ -87,7 +96,11 @@ describe("Given a function deletePlace", () => {
   describe("When the function is called", () => {
     test("Then it should receive a place id", async () => {
       const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
-        return <Provider store={store}>{children}</Provider>;
+        return (
+          <BrowserRouter>
+            <Provider store={store}>{children}</Provider>
+          </BrowserRouter>
+        );
       };
 
       const {
@@ -105,7 +118,11 @@ describe("Given a function deletePlace", () => {
 
     test("Then it should throw an error 'No se ha podido borrar el lugar' when rejecting", () => {
       const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
-        return <Provider store={store}>{children}</Provider>;
+        return (
+          <BrowserRouter>
+            <Provider store={store}>{children}</Provider>
+          </BrowserRouter>
+        );
       };
 
       server.resetHandlers(...errorHandlers);
@@ -139,7 +156,11 @@ describe("Given a function addPlace", () => {
   describe("When the function is called", () => {
     test("Then it should receive a place id", async () => {
       const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
-        return <Provider store={store}>{children}</Provider>;
+        return (
+          <BrowserRouter>
+            <Provider store={store}>{children}</Provider>
+          </BrowserRouter>
+        );
       };
 
       const expectedNewPlace = idPlaceMock;
@@ -160,7 +181,11 @@ describe("Given a function addPlace", () => {
         const wrapper = ({
           children,
         }: PropsWithChildren): React.ReactElement => {
-          return <Provider store={store}>{children}</Provider>;
+          return (
+            <BrowserRouter>
+              <Provider store={store}>{children}</Provider>
+            </BrowserRouter>
+          );
         };
 
         server.resetHandlers(...errorHandlers);
@@ -194,7 +219,11 @@ describe("Given a function getPlaceById", () => {
   describe("When the function is called", () => {
     test("Then it should receives a 'Sigiriya' place", async () => {
       const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
-        return <Provider store={store}>{children}</Provider>;
+        return (
+          <BrowserRouter>
+            <Provider store={store}>{children}</Provider>
+          </BrowserRouter>
+        );
       };
 
       const {
@@ -215,7 +244,11 @@ describe("Given a function getPlaceById", () => {
         const wrapper = ({
           children,
         }: PropsWithChildren): React.ReactElement => {
-          return <Provider store={store}>{children}</Provider>;
+          return (
+            <BrowserRouter>
+              <Provider store={store}>{children}</Provider>
+            </BrowserRouter>
+          );
         };
 
         server.resetHandlers(...errorHandlers);
@@ -249,7 +282,11 @@ describe("Given a function togglePlace", () => {
   describe("When the function is called", () => {
     test("Then it should return the place 'Sigiriya' with isFavorite property set to 'true'", async () => {
       const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
-        return <Provider store={store}>{children}</Provider>;
+        return (
+          <BrowserRouter>
+            <Provider store={store}>{children}</Provider>
+          </BrowserRouter>
+        );
       };
 
       const {
@@ -280,7 +317,11 @@ describe("Given a function togglePlace", () => {
   describe("When the function is called", () => {
     test("Then it should return the place 'Sigiriya' with isFavorite property set to 'true'", async () => {
       const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
-        return <Provider store={store}>{children}</Provider>;
+        return (
+          <BrowserRouter>
+            <Provider store={store}>{children}</Provider>
+          </BrowserRouter>
+        );
       };
 
       const {
@@ -301,7 +342,11 @@ describe("Given a function togglePlace", () => {
   describe("When the function is called and the modification couldn't modify and there is an error", () => {
     test("Then it should show the error message 'No se ha podido añadir a favoritos'", () => {
       const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
-        return <Provider store={store}>{children}</Provider>;
+        return (
+          <BrowserRouter>
+            <Provider store={store}>{children}</Provider>
+          </BrowserRouter>
+        );
       };
 
       server.resetHandlers(...errorHandlers);
