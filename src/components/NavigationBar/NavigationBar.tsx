@@ -1,12 +1,15 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
 import "./NavigationBar.css";
 import { iconLogout, iconNewPlace, iconPlaces } from "../../icons/icons";
 import { auth } from "../../firebase";
 import Button from "../Button/Button";
+import paths from "../../routers/paths/paths";
 
 const NavigationBar = (): React.ReactElement => {
+  const { pathname } = useLocation();
+
   const [user] = useAuthState(auth);
 
   const navigate = useNavigate();
@@ -22,7 +25,14 @@ const NavigationBar = (): React.ReactElement => {
         <nav className="navigation">
           <ul className="navigation__list">
             <li>
-              <NavLink to="/places" className="navigation__link">
+              <NavLink
+                to="/places"
+                className={
+                  pathname === paths.places
+                    ? "navigation__link"
+                    : "navigation__link__inactive"
+                }
+              >
                 {iconPlaces} Ver lugares
               </NavLink>
             </li>
