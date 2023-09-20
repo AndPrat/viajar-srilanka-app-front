@@ -27,6 +27,26 @@
 - PlaceDetailPage: /places/:placeId
 - NewPlacePage: /new-place
 
+## Tech Stack
+
+- MERN
+- Typescript
+- Axios
+- Redux toolkit
+- Vitest
+- MSW
+- Testing libery React
+- Toastify
+- Firebase / SDK
+- ESLINT
+- Prettier
+- Husky hooks
+- Github Actions
+- Morgan
+- Cors
+- Chalk
+- Helmet
+
 ## Install
 
 With npm do:
