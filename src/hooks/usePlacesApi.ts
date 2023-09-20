@@ -3,12 +3,14 @@ import { useCallback } from "react";
 import { useIdToken } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
 import showFeedback from "../showFeedback/showFeedback";
+import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../store";
 import {
   hideLoadingActionCreator,
   showLoadingActionCreator,
 } from "../store/ui/uiSlice";
 import { Place, PlaceApi } from "../types";
+import paths from "../routers/paths/paths";
 
 export const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -16,6 +18,7 @@ const usePlacesApi = () => {
   const dispatch = useAppDispatch();
   const apiUrl = import.meta.env.VITE_API_URL;
   const [user] = useIdToken(auth);
+  const navigate = useNavigate();
 
   const getPlaces = useCallback(async () => {
     dispatch(showLoadingActionCreator());
@@ -113,10 +116,13 @@ const usePlacesApi = () => {
 
         return place;
       } catch {
+        showFeedback("No se ha podido obtener el lugar", "error");
+        navigate(paths.places);
+
         throw new Error("No se ha podido obtener el lugar");
       }
     },
-    [user, apiUrl],
+    [user, apiUrl, navigate],
   );
 
   const togglePlace = async (id: string, isFavorite: boolean) => {

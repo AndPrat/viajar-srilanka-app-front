@@ -29,7 +29,6 @@ const Homepage = (): React.ReactElement => {
           name="description"
           content="Con Viajar a Sri Lanka podrás descubrir muchos lugares únicos de este maravilloso país"
         />
-        <meta httpEquiv="Cache-Control" content="max-age=3600" />
       </Helmet>
       <div className="home-page">
         <div className="home-page__information">
