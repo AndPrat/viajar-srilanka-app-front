@@ -65,7 +65,7 @@ const PlaceCard = ({
           />
         </Link>
         <Button
-          className="button button--icon button--medium button--toogle"
+          className="button button--icon button--medium button--toggle"
           actionOnClick={() => modifyPlace(isFavorite)}
           aria-label="toggle-button"
         >
