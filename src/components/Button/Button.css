@@ -36,3 +36,10 @@
 .button--medium {
   padding: 12px;
 }
+
+@media screen and (min-width: 1024px) {
+  .button--large {
+    padding: 17px 24px;
+    font-size: 20px;
+  }
+}
