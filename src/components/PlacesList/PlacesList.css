@@ -15,3 +15,27 @@
   color: var(--color-purple-dark);
   font-size: 1rem;
 }
+
+@media screen and (min-width: 768px) {
+  .places-list__place {
+    width: 33.33%;
+  }
+
+  .places-list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .places-list__place {
+    width: 30%;
+  }
+
+  .places-list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+}

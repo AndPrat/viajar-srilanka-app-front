@@ -23,3 +23,17 @@
   object-fit: cover;
   inset: 0;
 }
+
+@media screen and (min-width: 425px) {
+  .home-page__title {
+    font-size: 2rem;
+    padding: 150px 20px 30px 0px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .home-page__title {
+    font-size: 3rem;
+    padding: 200px 20px 40px 0px;
+  }
+}
