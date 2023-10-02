@@ -10,3 +10,16 @@
   text-align: center;
   margin-bottom: 39px;
 }
+
+@media screen and (min-width: 768px) {
+  .newPlace__title {
+    padding-top: 100px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .newPlace__title {
+    padding-top: 140px;
+    font-size: 1.8rem;
+  }
+}

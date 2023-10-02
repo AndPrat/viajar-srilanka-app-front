@@ -27,3 +27,19 @@
   border: 2px solid var(--color-orange);
   border-radius: 10px;
 }
+
+@media screen and (min-width: 768px) {
+  .place-form {
+    margin: 20px 120px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .place-form {
+    margin: 40px 150px 0px 150px;
+  }
+
+  .place-form__group {
+    font-size: 1.2rem;
+  }
+}
