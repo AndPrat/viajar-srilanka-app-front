@@ -4,6 +4,11 @@
 
 'Viajar a Sri Lanka' is an application where community members can read, add, delete and update Sri Lanka places.
 
+To view the application:
+https://andrea-prat-viajar-srilanka-app.netlify.app/
+
+![Drocer App](https://lllfmcmqtrzaksmbsdim.supabase.co/storage/v1/object/sign/sri%20lanka/viajar-srilanka-app.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJzcmkgbGFua2EvdmlhamFyLXNyaWxhbmthLWFwcC5wbmciLCJpYXQiOjE2OTYzMjgyMTksImV4cCI6MTcyNzg2NDIxOX0.s0QCqiKgU6odjzLirN33ghTW8q8CTdtsS3S7ViO2gGs&t=2023-10-03T10%3A16%3A59.984Z)
+
 ## Epics
 
 - Authentication
@@ -86,3 +91,11 @@ Use this script to include a test coverage in your code
 
 To contribute to the project, the PR's (pull requests) must be accepted by the creator of the repository.
 They are always welcome to fix bugs, errors, or make modifications that improve the application
+
+## Testing
+
+In this project has been tested with Vite for unit and component testing.
+The Sonar metrics:
+
+![Drocer Front coverage](https://lllfmcmqtrzaksmbsdim.supabase.co/storage/v1/object/sign/sri%20lanka/SonarCloud-front.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJzcmkgbGFua2EvU29uYXJDbG91ZC1mcm9udC5wbmciLCJpYXQiOjE2OTYzMjc4ODEsImV4cCI6MTcyNzg2Mzg4MX0.inNwMKuVtuLnS4B75ik9flhE3Wv4ZTm71vnyTbqcoPE&t=2023-10-03T10%3A11%3A21.805Z)
+![Drocer Front coverage](https://lllfmcmqtrzaksmbsdim.supabase.co/storage/v1/object/sign/sri%20lanka/SonarCloud-front-coverage.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJzcmkgbGFua2EvU29uYXJDbG91ZC1mcm9udC1jb3ZlcmFnZS5wbmciLCJpYXQiOjE2OTYzMjc4NzIsImV4cCI6MTcyNzg2Mzg3Mn0.dRm6HYUTyvo72beZCLWpyKOaZ4hn4npNlF827iPM8GA&t=2023-10-03T10%3A11%3A12.860Z)
