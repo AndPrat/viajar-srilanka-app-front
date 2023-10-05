@@ -3,10 +3,10 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useParams } from "react-router-dom";
 import { auth } from "../../firebase";
 import usePlacesApi from "../../hooks/usePlacesApi";
+import { iconLoaction, iconOtherPlace, iconSchedule } from "../../icons/icons";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { loadSelectedPlaceActionCreator } from "../../store/places/placesSlice";
 import "./PlaceDetailPage.css";
-import { iconLoaction, iconOtherPlace, iconSchedule } from "../../icons/icons";
 
 const PlaceDetailPage = () => {
   const [user] = useAuthState(auth);

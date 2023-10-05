@@ -8,6 +8,16 @@ import { useAppDispatch, useAppSelector } from "../../store";
 import { loadPlacesActionCreator } from "../../store/places/placesSlice";
 import "./PlacesListPage.css";
 import { Helmet } from "react-helmet";
+import Hero from "../../components/Hero/Hero";
+import {
+  altHeroImagePlacesList,
+  desktopHeroImagePlacesList,
+  desktopWebpHeroImagePlacesList,
+  fallbackHeroImagePlacesList,
+  mobileHeroImagePlacesList,
+  mobileWebpHeroImagePlacesList,
+  titleHeroImagePlacesList,
+} from "../../heroImages/heroImages";
 
 const PlacesListPage = (): React.ReactElement => {
   const places = useAppSelector((state) => state.placesState.places);
@@ -47,6 +57,15 @@ const PlacesListPage = (): React.ReactElement => {
           content="El listado de los lugares que hay que visitar de Sri Lanka"
         />
       </Helmet>
+      <Hero
+        fallback={fallbackHeroImagePlacesList}
+        desktopWebp={desktopWebpHeroImagePlacesList}
+        desktop={desktopHeroImagePlacesList}
+        mobileWebp={mobileWebpHeroImagePlacesList}
+        mobile={mobileHeroImagePlacesList}
+        alt={altHeroImagePlacesList}
+        title={titleHeroImagePlacesList}
+      />
       <h1 className="places__title">Lugares de interés</h1>
       {isLoadingUi && <Loading />}
       {places.length > 0
